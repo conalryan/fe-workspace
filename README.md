@@ -50,3 +50,7 @@ Consistent typography and theming
 Better accessibility and user experience
 
 
+## Tanstack router
+`pnpx create-tsrouter-app@latest packages/tanstack-react-app --template typescript`
+
+`pnpm --filter tanstack-react-app dev`
