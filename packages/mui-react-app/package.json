@@ -1,5 +1,5 @@
 {
-  "name": "basic-react-app",
+  "name": "mui-react-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@fontsource/roboto": "^5.2.8",
+    "@mui/icons-material": "^6.2.4",
+    "@mui/material": "^6.2.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
