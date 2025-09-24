@@ -58,3 +58,9 @@ Better accessibility and user experience
 ## Tanstack query
 
 `pnpm --filter tanstack-react-app add @tanstack/react-query @tanstack/react-query-devtools`
+
+## z-react app
+
+MUI, tanstack-router and tanstack-query
+
+`pnpm --filter z-react-app dev`
