@@ -54,3 +54,7 @@ Better accessibility and user experience
 `pnpx create-tsrouter-app@latest packages/tanstack-react-app --template typescript`
 
 `pnpm --filter tanstack-react-app dev`
+
+## Tanstack query
+
+`pnpm --filter tanstack-react-app add @tanstack/react-query @tanstack/react-query-devtools`
