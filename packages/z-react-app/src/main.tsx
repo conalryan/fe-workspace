@@ -1,27 +1,27 @@
-import { RouterProvider } from "@tanstack/react-router";
-import { StrictMode } from "react";
-import ReactDOM from "react-dom/client";
+import { RouterProvider } from '@tanstack/react-router';
+import { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
 
-import reportWebVitals from "./reportWebVitals.ts";
-import "./styles.css";
+import reportWebVitals from './reportWebVitals.ts';
+import './styles.css';
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { router } from "./router.tsx";
-import { ThemeProvider } from "@emotion/react";
-import { createTheme, CssBaseline } from "@mui/material";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { router } from './router.tsx';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme, CssBaseline } from '@mui/material';
 
 const theme = createTheme({
   palette: {
-    mode: "light",
+    mode: 'light',
   },
   typography: {
-    fontFamily: ["Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
+    fontFamily: ['Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(','),
   },
 });
 
 const queryClient = new QueryClient();
 
-const rootElement = document.getElementById("app");
+const rootElement = document.getElementById('app');
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
@@ -32,7 +32,7 @@ if (rootElement && !rootElement.innerHTML) {
           <RouterProvider router={router} />
         </QueryClientProvider>
       </ThemeProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 }
 

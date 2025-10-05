@@ -1,19 +1,19 @@
-import { getTodos, postTodo } from "@/api";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { getTodos, postTodo } from '@/api';
+import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 
 export const Todos = () => {
   // Access the client
   const queryClient = useQueryClient();
 
   // Queries
-  const { data: query } = useQuery({ queryKey: ["todos"], queryFn: getTodos });
-  console.log("Todos", query);
+  const { data: query } = useQuery({ queryKey: ['todos'], queryFn: getTodos });
+  console.log('Todos', query);
   // Mutations
   const mutation = useMutation({
     mutationFn: postTodo,
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
     },
   });
 
@@ -29,7 +29,7 @@ export const Todos = () => {
         onClick={() => {
           mutation.mutate({
             completed: false,
-            todo: "Do Laundry",
+            todo: 'Do Laundry',
             userId: 5,
           });
         }}

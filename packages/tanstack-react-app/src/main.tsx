@@ -1,18 +1,16 @@
-import {
-  RouterProvider
-} from "@tanstack/react-router";
-import { StrictMode } from "react";
-import ReactDOM from "react-dom/client";
+import { RouterProvider } from '@tanstack/react-router';
+import { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
 
-import reportWebVitals from "./reportWebVitals.ts";
-import "./styles.css";
+import reportWebVitals from './reportWebVitals.ts';
+import './styles.css';
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { router } from "./router.tsx";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { router } from './router.tsx';
 
 const queryClient = new QueryClient();
 
-const rootElement = document.getElementById("app");
+const rootElement = document.getElementById('app');
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
@@ -20,7 +18,7 @@ if (rootElement && !rootElement.innerHTML) {
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 }
 

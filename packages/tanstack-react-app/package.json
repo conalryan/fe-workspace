@@ -3,10 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
-    "start": "vite --port 3000",
     "build": "vite build && tsc",
+    "dev": "vite --port 3000",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
     "serve": "vite preview",
+    "start": "vite --port 3000",
     "test": "vitest run"
   },
   "dependencies": {
@@ -26,6 +28,7 @@
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
     "jsdom": "^26.0.0",
+    "prettier": "^3.6.2",
     "typescript": "^5.7.2",
     "vite": "^6.3.5",
     "vitest": "^3.0.5",

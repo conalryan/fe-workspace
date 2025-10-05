@@ -1,12 +1,7 @@
-import {
-  AppBar,
-  Container,
-  Toolbar,
-  Typography
-} from "@mui/material";
+import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 
-import { Outlet } from "@tanstack/react-router";
-import "./App.css";
+import { Outlet } from '@tanstack/react-router';
+import './App.css';
 
 function App() {
   return (

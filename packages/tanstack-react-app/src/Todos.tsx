@@ -1,4 +1,4 @@
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 
 export interface Todo {
   id: number;
@@ -8,7 +8,7 @@ export interface Todo {
 }
 
 export const getTodos = async (): Promise<Todo[]> => {
-  const response = await fetch("https://dummyjson.com/todos");
+  const response = await fetch('https://dummyjson.com/todos');
   return response.json();
 };
 
@@ -16,10 +16,10 @@ export const postTodo = async (newTodo: {
   id: number;
   todo: string;
 }): Promise<Todo> => {
-  const response = await fetch("https://dummyjson.com/todos/add", {
-    method: "POST",
+  const response = await fetch('https://dummyjson.com/todos/add', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(newTodo),
   });
@@ -31,14 +31,14 @@ export const Todos = () => {
   const queryClient = useQueryClient();
 
   // Queries
-  const { data: query } = useQuery({ queryKey: ["todos"], queryFn: getTodos });
-  console.log("Todos", query);
+  const { data: query } = useQuery({ queryKey: ['todos'], queryFn: getTodos });
+  console.log('Todos', query);
   // Mutations
   const mutation = useMutation({
     mutationFn: postTodo,
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
     },
   });
 
@@ -54,7 +54,7 @@ export const Todos = () => {
         onClick={() => {
           mutation.mutate({
             id: Date.now(),
-            todo: "Do Laundry",
+            todo: 'Do Laundry',
           });
         }}
       >
