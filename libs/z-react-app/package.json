@@ -1,6 +1,7 @@
 {
-  "name": "tanstack-react-app",
+  "name": "z-react-app",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "build": "vite build && tsc",
@@ -8,10 +9,14 @@
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "serve": "vite preview",
-    "start": "vite --port 3000",
     "test": "vitest run"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@fontsource/roboto": "^5.2.8",
+    "@mui/icons-material": "^6.2.4",
+    "@mui/material": "^6.2.4",
     "@tanstack/react-devtools": "^0.2.2",
     "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-query-devtools": "^5.90.2",
@@ -21,17 +26,18 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.2.0",
+    "@eslint/js": "^9.36.0",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "jsdom": "^26.0.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
     "prettier": "^3.6.2",
     "typescript": "^5.7.2",
+    "typescript-eslint": "^8.44.0",
     "vite": "^6.3.5",
-    "vitest": "^3.0.5",
     "web-vitals": "^4.2.4"
   }
 }

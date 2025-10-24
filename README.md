@@ -1,4 +1,4 @@
-# PNPM Workspace
+# FE Workspace
 
 `pnpm init`
 

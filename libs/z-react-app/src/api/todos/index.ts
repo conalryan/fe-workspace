@@ -1,6 +1,6 @@
 import type { Todo } from './types';
 
-export const getTodos = async (): Promise<Todo[]> => {
+export const getTodos = async (): Promise<{ todos: Todo[] }> => {
   const response = await fetch('https://dummyjson.com/todos');
   return response.json();
 };
