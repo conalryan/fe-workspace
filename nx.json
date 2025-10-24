@@ -1,0 +1,30 @@
+{
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "dependsOn": [
+        "^build"
+      ]
+    }
+  },
+  "projects": {
+    "basic-react-app": {
+      "root": "libs/basic-react-app"
+    },
+    "mui-react-app": {
+      "root": "libs/mui-react-app"
+    },
+    "tanstack-react-app": {
+      "root": "libs/tanstack-react-app"
+    },
+    "z-react-app": {
+      "root": "libs/z-react-app"
+    }
+  }
+}

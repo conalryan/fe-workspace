@@ -4,12 +4,12 @@
 
 ```bash
 echo "packages:\n
-  - './packages/*' >> pnpm-workspace.yaml`
+  - './libs/*' >> pnpm-workspace.yaml`
 ```
 
 ## React app
 
-`pnpm create vite packages/basic-react-app --template react-ts`
+`pnpm create vite libs/basic-react-app --template react-ts`
 
 `pnpm i`
 
@@ -17,7 +17,7 @@ echo "packages:\n
 
 ## MUI app
 
-`pnpm create vite packages/mui-react-app --template react-ts`
+`pnpm create vite libs/mui-react-app --template react-ts`
 
 `pnpm i`
 
@@ -49,9 +49,8 @@ Card-based counter component with styled buttons and icons
 Consistent typography and theming
 Better accessibility and user experience
 
-
 ## Tanstack router
-`pnpx create-tsrouter-app@latest packages/tanstack-react-app --template typescript`
+`pnpx create-tsrouter-app@latest libs/tanstack-react-app --template typescript`
 
 `pnpm --filter tanstack-react-app dev`
 
@@ -64,3 +63,9 @@ Better accessibility and user experience
 MUI, tanstack-router and tanstack-query
 
 `pnpm --filter z-react-app dev`
+
+## Lerna
+
+`pnpm dlx lerna init`
+
+`pnpm dlx lerna add-caching`
