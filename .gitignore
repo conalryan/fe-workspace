@@ -91,5 +91,6 @@ public
 
 .turbo
 
+# Nx
 .nx/cache
 .nx

@@ -10,15 +10,42 @@ export default defineConfig({
     federation({
       exposes: {
         './App': './src/App.tsx',
+        './MuiButton': './src/components/MuiButton.tsx',
       },
       filename: 'basicReactRemoteEntry.js',
       name: 'basicReactRemote',
       remotes: {
-        host: 'http://localhost:3200/hostEntry.js'
+        basicReactHost: {
+          entry: 'http://localhost:3200/basicReactHostEntry.js',
+          entryGlobalName: 'basicReactHost',
+          name: 'basicReactHost',
+          shareScope: 'default',
+          type: 'module',
+        }
       },
       shared: {
+        '@emotion/react': {
+          requiredVersion: dependencies['@emotion/react'],
+          singleton: true,
+        },
+        '@emotion/styled': {
+          requiredVersion: dependencies['@emotion/styled'],
+          singleton: true,
+        },
+        '@mui/icons-material': {
+          requiredVersion: dependencies['@mui/icons-material'],
+          singleton: true,
+        },
+        '@mui/material': {
+          requiredVersion: dependencies['@mui/material'],
+          singleton: true,
+        },
         react: {
           requiredVersion: dependencies.react,
+          singleton: true,
+        },
+        'react-dom': {
+          requiredVersion: dependencies['react-dom'],
           singleton: true,
         },
       },

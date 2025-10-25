@@ -11,8 +11,8 @@ export default defineConfig({
       exposes: {
         './SharedComponent': './src/components/SharedComponent.tsx',
       },
-      filename: 'hostEntry.js',
-      name: 'host',
+      filename: 'basicReactHostEntry.js',
+      name: 'basicReactHost',
       remotes: {
         basicReactRemote: {
           entry: 'http://localhost:3201/basicReactRemoteEntry.js',
@@ -23,8 +23,28 @@ export default defineConfig({
         },
       },
       shared: {
+        '@emotion/react': {
+          requiredVersion: dependencies['@emotion/react'],
+          singleton: true,
+        },
+        '@emotion/styled': {
+          requiredVersion: dependencies['@emotion/styled'],
+          singleton: true,
+        },
+        '@mui/icons-material': {
+          requiredVersion: dependencies['@mui/icons-material'],
+          singleton: true,
+        },
+        '@mui/material': {
+          requiredVersion: dependencies['@mui/material'],
+          singleton: true,
+        },
         react: {
           requiredVersion: dependencies.react,
+          singleton: true,
+        },
+        'react-dom': {
+          requiredVersion: dependencies['react-dom'],
           singleton: true,
         },
       },

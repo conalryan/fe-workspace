@@ -1,17 +1,33 @@
-import { useState } from 'react';
+import { Box, Link, Typography } from '@mui/material';
+import Card from '@mui/material/Card/Card';
+import { lazy, useState } from 'react';
 
+import './App.css';
 import reactLogo from './assets/react.svg';
+import MuiButton from './components/MuiButton';
 
 import viteLogo from '/vite.svg';
-import './App.css';
+
+const TheComponent = lazy(
+  // @ts-expect-error Module federation remote import not recognized by TypeScript
+  async () => import('basicReactHost/SharedComponent'),
+  // Example of how to import a named export instead of default export
+  // const TheComponent = lazy(
+  //   async () => {
+  //     // @ts-expect-error Module federation remote import not recognized by TypeScript
+  //     const { SharedComponent } = await import('basicReactHost/SharedComponent');
+  //     return { default: SharedComponent };
+  //   },
+  // );
+);
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a
+      <Box>
+        <Link
           href="https://vite.dev"
           target="_blank">
           <img
@@ -19,8 +35,8 @@ function App() {
             className="logo"
             src={viteLogo}
           />
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://react.dev"
           target="_blank">
           <img
@@ -28,14 +44,16 @@ function App() {
             className="logo react"
             src={reactLogo}
           />
-        </a>
-      </div>
-      <h1>Basic React Remote</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-      </div>
+        </Link>
+      </Box>
+      <Card sx={{ marginBottom: 2, padding: 2 }}>
+        <Typography variant="h3">Basic React Remote</Typography>
+        <MuiButton onClick={() => setCount((count) => count + 1)}>count is {count}</MuiButton>
+      </Card>
+      <TheComponent />
     </>
   );
 }
 
+/** default export for module federation */
 export default App;
