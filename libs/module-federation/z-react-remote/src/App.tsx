@@ -47,7 +47,7 @@ function App() {
             />
           </Link>
         </Box>
-        <Typography variant="h3">React Remote</Typography>
+        <Typography variant="h3">Z React Remote</Typography>
         <MuiButton onClick={() => setCount((count) => count + 1)}>count is {count}</MuiButton>
       </Card>
       <SharedComponent />

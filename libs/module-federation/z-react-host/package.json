@@ -17,6 +17,8 @@
     "@fontsource/roboto": "^5.2.8",
     "@mui/icons-material": "^6.2.4",
     "@mui/material": "^6.2.4",
+    "@tanstack/react-router": "^1.132.0",
+    "@tanstack/react-router-devtools": "^1.132.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

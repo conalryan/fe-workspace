@@ -1,13 +1,10 @@
 import { AppBar, Container, Toolbar } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { lazy, useState } from 'react';
+import { Outlet } from '@tanstack/react-router';
 
 import './App.css';
-
-const ReactRemote = lazy(
-  // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('zReactRemote/App'),
-);
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import { lazy, useState } from 'react';
 
 const MuiButtonFromRemote = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
@@ -38,7 +35,8 @@ function App() {
       <Container
         maxWidth="md"
         sx={{ mt: 4 }}>
-        <ReactRemote />
+        <Outlet />
+        <TanStackRouterDevtools />
       </Container>
     </>
   );

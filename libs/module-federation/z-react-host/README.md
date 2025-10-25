@@ -16,6 +16,95 @@ index.css
 Combined install
 `pnpm add @mui/material @emotion/react @emotion/styled @fontsource/roboto @mui/icons-material`
 
+## [Tanstack Router Installation](https://tanstack.com/router/latest/docs/framework/react/quick-start)
+
+`pnpm -F z-react-host add @tanstack/react-router`
+
+`pnpm -F z-react-host add @tanstack/react-router-devtools`
+
+## Tanstack Router Integration
+
+main.tsx
+```typescript
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>,
+);
+```
+
+router.tsx
+```typescript
+import { createRouter } from '@tanstack/react-router';
+import { routeTree } from './routes';
+
+export const router = createRouter({
+  context: {},
+  defaultPreload: 'intent',
+  defaultPreloadStaleTime: 0,
+  defaultStructuralSharing: true,
+  routeTree,
+  scrollRestoration: true,
+});
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
+```
+
+routes/routeTree.tsx
+```typescript
+import { indexRoute } from './indexRoute';
+import { rootRoute } from './rootRoute';
+import { zReactRemoteRoute } from './z-react-remote';
+
+export const routeTree = rootRoute.addChildren([indexRoute, zReactRemoteRoute]);
+```
+
+routes/root.tsx
+```typescript
+import { createRootRoute } from '@tanstack/react-router';
+import App from '../App';
+
+export const rootRoute = createRootRoute({
+  component: App,
+});
+```
+
+routes/indexroute.tsx
+```typescript
+import { createRoute, Navigate } from '@tanstack/react-router';
+import { rootRoute } from './rootRoute';
+
+export const indexRoute = createRoute({
+  component: () => <Navigate to="/z-react-remote" />,
+  getParentRoute: () => rootRoute,
+  path: '/',
+});
+```
+
+routes/z-react-remote
+```typescript
+import { createRoute } from '@tanstack/react-router';
+import { lazy } from 'react';
+import { rootRoute } from '../rootRoute';
+
+const ZReactRemote = lazy(
+  // @ts-expect-error Module federation remote import not recognized by TypeScript
+  async () => import('zReactRemote/App'),
+);
+
+export const zReactRemoteRoute = createRoute({
+  component: ZReactRemote,
+  getParentRoute: () => rootRoute,
+  path: 'z-react-remote',
+});
+
+export default zReactRemoteRoute;
+```
+
 ## Module Federation Configuration
 vite.confit.ts
 ```typescript
