@@ -13,7 +13,7 @@ export default defineConfig({
       name: 'host',
       remotes: {
         remote: {
-          entry: 'http://localhost:4174/remoteEntry.js',
+          entry: 'http://localhost:3201/remoteEntry.js',
           entryGlobalName: 'remote',
           name: 'remote',
           shareScope: 'default',

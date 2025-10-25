@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build && tsc",
-    "dev": "vite --port 3000",
+    "dev": "vite --port 3500",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "serve": "vite preview",
