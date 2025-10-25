@@ -14,23 +14,23 @@
     }
   },
   "projects": {
-    "basic-react-app": {
-      "root": "libs/basic-react-app"
+    "react-basic-app": {
+      "root": "libs/react-basic-app"
     },
-    "z-react-host": {
-      "root": "libs/module-federation/z-react-host"
+    "react-mui-tan-host": {
+      "root": "libs/module-federation/react-mui-tan-host"
     },
-    "z-react-remote": {
-      "root": "libs/module-federation/z-react-remote"
+    "react-mui-tan-remote": {
+      "root": "libs/module-federation/react-mui-tan-remote"
     },
-    "mui-react-app": {
-      "root": "libs/mui-react-app"
+    "react-mui-app": {
+      "root": "libs/react-mui-app"
     },
-    "tanstack-react-app": {
-      "root": "libs/tanstack-react-app"
+    "react-tan-app": {
+      "root": "libs/react-tan-app"
     },
-    "z-react-app": {
-      "root": "libs/z-react-app"
+    "react-mui-tan-app": {
+      "root": "libs/react-mui-tan-app"
     }
   }
 }

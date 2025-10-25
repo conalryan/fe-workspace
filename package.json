@@ -8,7 +8,7 @@
     "bootstrap": "pnpm i && pnpm build",
     "build": "lerna run build --parallel",
     "clean": "pnpm clean:dist && pnpm clean:node_modules && pnpm clean:nx",
-    "clean:dist": "pnpm -r exec rm -rf ./dist ./__mf__temp",
+    "clean:dist": "pnpm -r exec rm -rf ./dist ./.__mf__temp",
     "clean:node_modules": "pnpm -r exec rm -rf ./node_modules",
     "clean:nx": "rm -rf .nx",
     "dev": "lerna run dev --parallel",

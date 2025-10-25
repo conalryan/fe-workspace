@@ -7,13 +7,13 @@ echo "packages:\n
   - './libs/*' >> pnpm-workspace.yaml`
 ```
 
-## [Basic React App](libs/basic-react-app/README.md)
+## [React Basic App](libs/react-basic-app/README.md)
 
-## [MUI React App](libs/mui-react-app/README.md)
+## [React MUI App](libs/react-mui-app/README.md)
 
-## [Tanstack React App](libs/tanstack-react-app/README.md)
+## [React Tan App](libs/react-tan-app/README.md)
 
-## [z-react app](libs/z-react-app/README.md)
+## [React MUI Tan App](libs/react-mui-tan-app/README.md)
 
 ## [Module Federation](libs/module-federation/README.md)
 
