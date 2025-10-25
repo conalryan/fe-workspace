@@ -11,14 +11,7 @@ echo "packages:\n
 
 ## [MUI React App](libs/mui-react-app/README.md)
 
-## Tanstack router
-`pnpx create-tsrouter-app@latest libs/tanstack-react-app --template typescript`
-
-`pnpm --filter tanstack-react-app dev`
-
-## Tanstack query
-
-`pnpm --filter tanstack-react-app add @tanstack/react-query @tanstack/react-query-devtools`
+## [Tanstack React App](libs/tanstack-react-app/README.md)
 
 ## z-react app
 
