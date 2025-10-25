@@ -1,5 +1,6 @@
 # MUI React App
 
+## Setup
 `pnpm create vite libs/mui-react-app --template react-ts`
 
 `pnpm i`
@@ -8,7 +9,7 @@
 
 `pnpm --filter mui-react-app dev`
 
-## [Installation](https://mui.com/material-ui/getting-started/installation/)
+## [MUI Installation](https://mui.com/material-ui/getting-started/installation/)
 
 1. `pnpm add @mui/material @emotion/react @emotion/styled`
 2. `pnpm add @fontsource/roboto`

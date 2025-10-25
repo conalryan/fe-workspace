@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# Basic React Host
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [MUI Installation](https://mui.com/material-ui/getting-started/installation/)
 
-Currently, two official plugins are available:
+1. `pnpm add @mui/material @emotion/react @emotion/styled`
+2. `pnpm add @fontsource/roboto`
+index.css
+```css
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+```
+3. `pnpm add @mui/icons-material`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Combined install
+`pnpm add @mui/material @emotion/react @emotion/styled @fontsource/roboto @mui/icons-material`
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
+## Module Federation Configuration
+vite.confit.ts
+```typescript
+export default defineConfig({
+  plugins: [
+    federation({
+      exposes: {
+        './SharedComponent': './src/components/SharedComponent.tsx',
       },
-      // other options...
-    },
-  },
-]);
+      filename: 'basicReactHostEntry.js',
+      name: 'basicReactHost',
+      remotes: {
+        basicReactRemote: {
+          entry: 'http://localhost:3201/basicReactRemoteEntry.js',
+          entryGlobalName: 'basicReactRemote',
+          name: 'basicReactRemote',
+          shareScope: 'default',
+          type: 'module',
+        },
+      },
+      shared: {
+        '@emotion/react': {
+          requiredVersion: dependencies['@emotion/react'],
+          singleton: true,
+        },
+        '@emotion/styled': {
+          requiredVersion: dependencies['@emotion/styled'],
+          singleton: true,
+        },
+        '@mui/icons-material': {
+          requiredVersion: dependencies['@mui/icons-material'],
+          singleton: true,
+        },
+        '@mui/material': {
+          requiredVersion: dependencies['@mui/material'],
+          singleton: true,
+        },
+        react: {
+          requiredVersion: dependencies.react,
+          singleton: true,
+        },
+        'react-dom': {
+          requiredVersion: dependencies['react-dom'],
+          singleton: true,
+        },
+      },
+    }),
+    react(),
+  ],
+});
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Module Federation Integration
+App.tsx
+```typescript
+const BasicReactRemote = lazy(
+  // @ts-expect-error Module federation remote import not recognized by TypeScript
+  async () => import('basicReactRemote/App'),
+);
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+const MuiButtonFromRemote = lazy(
+  // @ts-expect-error Module federation remote import not recognized by TypeScript
+  async () => import('basicReactRemote/MuiButton'),
+);
 ```

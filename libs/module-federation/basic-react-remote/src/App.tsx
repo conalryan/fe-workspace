@@ -8,7 +8,7 @@ import MuiButton from './components/MuiButton';
 
 import viteLogo from '/vite.svg';
 
-const TheComponent = lazy(
+const SharedComponent = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
   async () => import('basicReactHost/SharedComponent'),
   // Example of how to import a named export instead of default export
@@ -50,7 +50,7 @@ function App() {
         <Typography variant="h3">Basic React Remote</Typography>
         <MuiButton onClick={() => setCount((count) => count + 1)}>count is {count}</MuiButton>
       </Card>
-      <TheComponent />
+      <SharedComponent />
     </>
   );
 }

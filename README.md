@@ -15,32 +15,14 @@ echo "packages:\n
 
 ## [z-react app](libs/z-react-app/README.md)
 
+## [Module Federation](libs/module-federation/README.md)
+
 ## Lerna + Nx
 
 `pnpm dlx lerna init`
 
 `pnpm dlx lerna add-caching`
 
-## Module Federation
+`lerna run build --parallel`
 
-`pnpm create vite libs/module-federation/basic-react-host --template react-ts`
-
-`pnpm create vite libs/module-federation/basic-react-remote --template react-ts`
-
-`pnpm -F basic-react-host add -D @module-federation/vite`
-
-`pnpm -F basic-react-remote add -D @module-federation/vite`
-
-### Add MUI to Host
-`pnpm -F basic-react-host add @mui/material @emotion/react @emotion/styled`
-
-`pnpm -F basic-react-host add @fontsource/roboto`
-```css
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-```
-
-`pnpm -F basic-react-host add @mui/icons-material`
-
+`lerna run dev --parallel`
