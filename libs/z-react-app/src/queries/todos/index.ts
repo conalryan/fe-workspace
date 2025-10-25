@@ -1,9 +1,8 @@
-import { getTodos, postTodo } from '@/api/todos';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-export const useTodos = () => {
-  return useQuery({ queryKey: ['todos'], queryFn: getTodos });
-};
+import { getTodos, postTodo } from '@/api/todos';
+
+export const useTodos = () => useQuery({ queryFn: getTodos, queryKey: ['todos'] });
 
 export const useAddTodo = () => {
   const queryClient = useQueryClient();

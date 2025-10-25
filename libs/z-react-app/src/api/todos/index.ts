@@ -11,11 +11,11 @@ export const postTodo = async (newTodo: {
   userId: number;
 }): Promise<Todo> => {
   const response = await fetch('https://dummyjson.com/todos/add', {
-    method: 'POST',
+    body: JSON.stringify(newTodo),
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(newTodo),
+    method: 'POST',
   });
   return response.json();
 };

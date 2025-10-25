@@ -1,13 +1,14 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { getTodos, postTodo } from '@/api';
-import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 
 export const Todos = () => {
   // Access the client
   const queryClient = useQueryClient();
 
   // Queries
-  const { data: query } = useQuery({ queryKey: ['todos'], queryFn: getTodos });
-  console.log('Todos', query);
+  const { data: query } = useQuery({ queryFn: getTodos, queryKey: ['todos'] });
+  console.info('Todos', query);
   // Mutations
   const mutation = useMutation({
     mutationFn: postTodo,
@@ -32,8 +33,7 @@ export const Todos = () => {
             todo: 'Do Laundry',
             userId: 5,
           });
-        }}
-      >
+        }}>
         Add Todo
       </button>
     </div>

@@ -1,14 +1,15 @@
+import { ThemeProvider } from '@emotion/react';
+import { createTheme, CssBaseline } from '@mui/material';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from '@tanstack/react-router';
+
+import './styles.css';
+
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import reportWebVitals from './reportWebVitals.ts';
-import './styles.css';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { router } from './router.tsx';
-import { ThemeProvider } from '@emotion/react';
-import { createTheme, CssBaseline } from '@mui/material';
 
 const theme = createTheme({
   palette: {

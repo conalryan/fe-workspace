@@ -11,7 +11,10 @@
     "clean:dist": "pnpm -r exec rm -rf ./dist ./__mf__temp",
     "clean:node_modules": "pnpm -r exec rm -rf ./node_modules",
     "clean:nx": "rm -rf .nx",
-    "dev": "lerna run dev --parallel"
+    "dev": "lerna run dev --parallel",
+    "lint": "lerna run lint --parallel",
+    "lint:fix": "lerna run lint:fix --parallel",
+    "format": "lerna run format --parallel"
   },
   "devDependencies": {
     "lerna": "^9.0.0"
