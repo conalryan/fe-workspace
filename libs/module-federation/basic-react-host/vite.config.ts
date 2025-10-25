@@ -8,14 +8,16 @@ import { dependencies } from './package.json';
 export default defineConfig({
   plugins: [
     federation({
-      exposes: {},
-      filename: 'remoteEntry.js',
+      exposes: {
+        './SharedComponent': './src/components/SharedComponent.tsx',
+      },
+      filename: 'hostEntry.js',
       name: 'host',
       remotes: {
-        remoteApp: {
-          entry: 'http://localhost:3201/remoteApp.js',
-          entryGlobalName: 'remoteApp',
-          name: 'remoteApp',
+        basicReactRemote: {
+          entry: 'http://localhost:3201/basicReactRemoteEntry.js',
+          entryGlobalName: 'basicReactRemote',
+          name: 'basicReactRemote',
           shareScope: 'default',
           type: 'module',
         },

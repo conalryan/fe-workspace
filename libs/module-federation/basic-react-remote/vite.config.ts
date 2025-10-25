@@ -9,11 +9,13 @@ export default defineConfig({
   plugins: [
     federation({
       exposes: {
-        './remote-app': './src/App.tsx',
+        './App': './src/App.tsx',
       },
-      filename: 'remoteApp.js',
-      name: 'remoteApp',
-      remotes: {},
+      filename: 'basicReactRemoteEntry.js',
+      name: 'basicReactRemote',
+      remotes: {
+        host: 'http://localhost:3200/hostEntry.js'
+      },
       shared: {
         react: {
           requiredVersion: dependencies.react,

@@ -1,16 +1,17 @@
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
+import './App.css';
+import Typography from '@mui/material/Typography';
 import { lazy, useState } from 'react';
 
 import reactLogo from './assets/react.svg';
 
-import './App.css';
 import viteLogo from '/vite.svg';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 
-const Remote = lazy(
+const BasicReactRemote = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('remoteApp/remote-app'),
+  async () => import('basicReactRemote/App'),
 );
 
 function App() {
@@ -41,12 +42,12 @@ function App() {
       <Typography variant="h3">Basic React Host</Typography>
       <Box className="card">
         <Button
-          variant="contained"
-          onClick={() => setCount((count) => count + 1)}>
+          onClick={() => setCount((count) => count + 1)}
+          variant="contained">
           count is {count}
         </Button>
       </Box>
-      <Remote />
+      <BasicReactRemote />
     </>
   );
 }
