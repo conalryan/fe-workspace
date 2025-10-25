@@ -1,0 +1,8 @@
+# Ignore artifacts:
+build
+coverage
+dist
+node_modules
+.__mf__temp
+.__mf__temp/*
+\.__mf__temp/**
