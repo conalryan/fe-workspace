@@ -94,3 +94,6 @@ public
 # Nx
 .nx/cache
 .nx
+
+# Module Federation
+.__mf__temp
