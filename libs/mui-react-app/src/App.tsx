@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import { Add, Remove } from '@mui/icons-material';
 import {
-  Container,
-  Typography,
+  AppBar,
+  Box,
   Button,
   Card,
   CardContent,
-  Box,
-  AppBar,
-  Toolbar,
-  Stack,
+  Container,
   Link,
+  Stack,
+  Toolbar,
+  Typography,
 } from '@mui/material';
-import { Add, Remove } from '@mui/icons-material';
+import { useState } from 'react';
+
 import reactLogo from './assets/react.svg';
+
 import viteLogo from '/vite.svg';
 
 function App() {
@@ -22,85 +24,103 @@ function App() {
     <>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            component="div"
+            sx={{ flexGrow: 1 }}
+            variant="h6">
             MUI React App
           </Typography>
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="md" sx={{ mt: 4 }}>
-        <Box display="flex" justifyContent="center" gap={2} mb={4}>
-          <Link href="https://vite.dev" target="_blank">
-            <img src={viteLogo} style={{ height: '80px' }} alt="Vite logo" />
+      <Container
+        maxWidth="md"
+        sx={{ mt: 4 }}>
+        <Box
+          display="flex"
+          gap={2}
+          justifyContent="center"
+          mb={4}>
+          <Link
+            href="https://vite.dev"
+            target="_blank">
+            <img
+              alt="Vite logo"
+              src={viteLogo}
+              style={{ height: '80px' }}
+            />
           </Link>
-          <Link href="https://react.dev" target="_blank">
-            <img src={reactLogo} style={{ height: '80px' }} alt="React logo" />
+          <Link
+            href="https://react.dev"
+            target="_blank">
+            <img
+              alt="React logo"
+              src={reactLogo}
+              style={{ height: '80px' }}
+            />
           </Link>
         </Box>
 
-        <Typography variant="h3" component="h1" textAlign="center" gutterBottom>
+        <Typography
+          component="h1"
+          gutterBottom
+          textAlign="center"
+          variant="h3">
           Vite + React + MUI
         </Typography>
 
-        <Card sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
+        <Card sx={{ maxWidth: 400, mt: 4, mx: 'auto' }}>
           <CardContent>
             <Typography
-              variant="h5"
               component="h2"
-              textAlign="center"
               gutterBottom
-            >
+              textAlign="center"
+              variant="h5">
               Counter Example
             </Typography>
 
             <Stack
-              direction="row"
-              spacing={2}
-              justifyContent="center"
               alignItems="center"
+              direction="row"
+              justifyContent="center"
               mb={2}
-            >
+              spacing={2}>
               <Button
-                variant="contained"
                 onClick={() => setCount((count) => count - 1)}
                 startIcon={<Remove />}
-              >
+                variant="contained">
                 Decrease
               </Button>
 
               <Typography
-                variant="h4"
                 component="span"
                 sx={{ minWidth: '60px', textAlign: 'center' }}
-              >
+                variant="h4">
                 {count}
               </Typography>
 
               <Button
-                variant="contained"
                 onClick={() => setCount((count) => count + 1)}
                 startIcon={<Add />}
-              >
+                variant="contained">
                 Increase
               </Button>
             </Stack>
 
             <Typography
-              variant="body2"
-              textAlign="center"
               color="text.secondary"
-            >
+              textAlign="center"
+              variant="body2">
               Edit <code>src/App.tsx</code> and save to test HMR
             </Typography>
           </CardContent>
         </Card>
 
         <Typography
-          variant="body2"
-          textAlign="center"
           color="text.secondary"
           mt={4}
-        >
+          textAlign="center"
+          variant="body2">
           Click on the Vite and React logos to learn more
         </Typography>
       </Container>
