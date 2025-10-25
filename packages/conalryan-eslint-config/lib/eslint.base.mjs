@@ -8,7 +8,7 @@ export default {
     'max-classes-per-file': ['error', 1],
     'max-depth': ['error', 4],
     'max-lines': ['error', 500],
-    'max-lines-per-function': ['error', 100],
+    'max-lines-per-function': ['error', 200],
     'max-nested-callbacks': ['error', 4],
     'max-params': ['error', 5],
     'new-cap': ['error', { newIsCap: true }],
