@@ -20,8 +20,8 @@
     "react-host": {
       "root": "libs/module-federation/react-host"
     },
-    "basic-react-remote": {
-      "root": "libs/module-federation/basic-react-remote"
+    "react-remote": {
+      "root": "libs/module-federation/react-remote"
     },
     "mui-react-app": {
       "root": "libs/mui-react-app"
