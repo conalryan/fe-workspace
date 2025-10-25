@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 
 const Remote = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('remote/remote-app'),
+  async () => import('remoteApp/remote-app'),
 );
 
 function App() {

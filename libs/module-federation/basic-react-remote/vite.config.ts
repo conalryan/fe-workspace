@@ -11,8 +11,8 @@ export default defineConfig({
       exposes: {
         './remote-app': './src/App.tsx',
       },
-      filename: 'remoteEntry.js',
-      name: 'remote',
+      filename: 'remoteApp.js',
+      name: 'remoteApp',
       remotes: {},
       shared: {
         react: {

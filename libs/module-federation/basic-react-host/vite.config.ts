@@ -12,10 +12,10 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       name: 'host',
       remotes: {
-        remote: {
-          entry: 'http://localhost:3201/remoteEntry.js',
-          entryGlobalName: 'remote',
-          name: 'remote',
+        remoteApp: {
+          entry: 'http://localhost:3201/remoteApp.js',
+          entryGlobalName: 'remoteApp',
+          name: 'remoteApp',
           shareScope: 'default',
           type: 'module',
         },
