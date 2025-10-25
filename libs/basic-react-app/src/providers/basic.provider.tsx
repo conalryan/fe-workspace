@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface BasicContextType {
   baseCtx: string;
@@ -7,18 +7,14 @@ interface BasicContextType {
 
 const BasicContext = createContext<BasicContextType>({
   baseCtx: '',
-  setBaseCtx: () => {},
+  setBaseCtx: () => {
+    /* no-op */
+  },
 });
 
-export const BasicProvider: React.FC<React.PropsWithChildren<{}>> = ({
-  children,
-}) => {
+export const BasicProvider: React.FC<React.PropsWithChildren<object>> = ({ children }) => {
   const [baseCtx, setBaseCtx] = useState('Initial Value');
-  return (
-    <BasicContext.Provider value={{ baseCtx, setBaseCtx }}>
-      {children}
-    </BasicContext.Provider>
-  );
+  return <BasicContext.Provider value={{ baseCtx, setBaseCtx }}>{children}</BasicContext.Provider>;
 };
 
 export const BasicComponent = () => {
