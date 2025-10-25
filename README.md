@@ -13,11 +13,7 @@ echo "packages:\n
 
 ## [Tanstack React App](libs/tanstack-react-app/README.md)
 
-## z-react app
-
-MUI, tanstack-router and tanstack-query
-
-`pnpm --filter z-react-app dev`
+## [z-react app](libs/z-react-app/README.md)
 
 ## Lerna + Nx
 
