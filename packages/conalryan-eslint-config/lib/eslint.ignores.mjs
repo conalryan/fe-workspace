@@ -5,5 +5,6 @@ export default {
     '**/node_modules/*',
     '**/public/*',
     '**/storybook-static/*',
+    '**/.__mf__temp/**',
   ],
 };

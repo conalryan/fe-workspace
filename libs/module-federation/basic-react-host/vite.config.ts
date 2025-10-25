@@ -1,24 +1,25 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { federation } from "@module-federation/vite";
+import { federation } from '@module-federation/vite';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+
 import { dependencies } from './package.json';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     federation({
-      name: "host",
+      exposes: {},
+      filename: 'remoteEntry.js',
+      name: 'host',
       remotes: {
         remote: {
-          type: "module",
-          name: "remote",
-          entry: "http://localhost:4174/remoteEntry.js",
-          entryGlobalName: "remote",
-          shareScope: "default",
+          entry: 'http://localhost:4174/remoteEntry.js',
+          entryGlobalName: 'remote',
+          name: 'remote',
+          shareScope: 'default',
+          type: 'module',
         },
       },
-      exposes: {},
-      filename: "remoteEntry.js",
       shared: {
         react: {
           requiredVersion: dependencies.react,
