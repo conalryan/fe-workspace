@@ -1,11 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import reportWebVitals from './reportWebVitals.ts';
 import './styles.css';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import reportWebVitals from './reportWebVitals.ts';
 import { router } from './router.tsx';
 
 const queryClient = new QueryClient();
