@@ -11,13 +11,13 @@ export default defineConfig({
       exposes: {
         './SharedComponent': './src/components/SharedComponent.tsx',
       },
-      filename: 'basicReactHostEntry.js',
-      name: 'basicReactHost',
+      filename: 'zReactHostEntry.js',
+      name: 'zReactHost',
       remotes: {
-        basicReactRemote: {
-          entry: 'http://localhost:3201/basicReactRemoteEntry.js',
-          entryGlobalName: 'basicReactRemote',
-          name: 'basicReactRemote',
+        zReactRemote: {
+          entry: 'http://localhost:3201/zReactRemoteEntry.js',
+          entryGlobalName: 'zReactRemote',
+          name: 'zReactRemote',
           shareScope: 'default',
           type: 'module',
         },

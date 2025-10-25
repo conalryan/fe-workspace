@@ -17,11 +17,11 @@
     "basic-react-app": {
       "root": "libs/basic-react-app"
     },
-    "react-host": {
-      "root": "libs/module-federation/react-host"
+    "z-react-host": {
+      "root": "libs/module-federation/z-react-host"
     },
-    "react-remote": {
-      "root": "libs/module-federation/react-remote"
+    "z-react-remote": {
+      "root": "libs/module-federation/z-react-remote"
     },
     "mui-react-app": {
       "root": "libs/mui-react-app"

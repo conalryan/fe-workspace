@@ -1,4 +1,4 @@
-# Basic React Remote
+# Basic React Host
 
 ## [MUI Installation](https://mui.com/material-ui/getting-started/installation/)
 
@@ -23,19 +23,18 @@ export default defineConfig({
   plugins: [
     federation({
       exposes: {
-        './App': './src/App.tsx',
-        './MuiButton': './src/components/MuiButton.tsx',
+        './SharedComponent': './src/components/SharedComponent.tsx',
       },
-      filename: 'basicReactRemoteEntry.js',
-      name: 'basicReactRemote',
+      filename: 'zReactHostEntry.js',
+      name: 'zReactHost',
       remotes: {
-        basicReactHost: {
-          entry: 'http://localhost:3200/basicReactHostEntry.js',
-          entryGlobalName: 'basicReactHost',
-          name: 'basicReactHost',
+        zReactRemote: {
+          entry: 'http://localhost:3201/zReactRemoteEntry.js',
+          entryGlobalName: 'zReactRemote',
+          name: 'zReactRemote',
           shareScope: 'default',
           type: 'module',
-        }
+        },
       },
       shared: {
         '@emotion/react': {
@@ -72,16 +71,13 @@ export default defineConfig({
 ## Module Federation Integration
 App.tsx
 ```typescript
-const SharedComponent = lazy(
+const zReactRemote = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('basicReactHost/SharedComponent'),
-  // Example of how to import a named export instead of default export
-  // const TheComponent = lazy(
-  //   async () => {
-  //     // @ts-expect-error Module federation remote import not recognized by TypeScript
-  //     const { SharedComponent } = await import('basicReactHost/SharedComponent');
-  //     return { default: SharedComponent };
-  //   },
-  // );
+  async () => import('zReactRemote/App'),
+);
+
+const MuiButtonFromRemote = lazy(
+  // @ts-expect-error Module federation remote import not recognized by TypeScript
+  async () => import('zReactRemote/MuiButton'),
 );
 ```

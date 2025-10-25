@@ -1,5 +1,5 @@
 # Module Federation
 
-## [React Host](./react-host/README.md)
+## [Z React Host](./z-react-host/README.md)
 
-## [React Remote](./react-remote/README.md)
+## [Z React Remote](./z-react-remote/README.md)

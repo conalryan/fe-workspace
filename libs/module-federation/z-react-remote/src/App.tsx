@@ -10,12 +10,12 @@ import viteLogo from '/vite.svg';
 
 const SharedComponent = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('basicReactHost/SharedComponent'),
+  async () => import('zReactHost/SharedComponent'),
   // Example of how to import a named export instead of default export
   // const TheComponent = lazy(
   //   async () => {
   //     // @ts-expect-error Module federation remote import not recognized by TypeScript
-  //     const { SharedComponent } = await import('basicReactHost/SharedComponent');
+  //     const { SharedComponent } = await import('zReactHost/SharedComponent');
   //     return { default: SharedComponent };
   //   },
   // );

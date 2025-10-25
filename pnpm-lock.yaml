@@ -49,7 +49,7 @@ importers:
         specifier: ^7.1.7
         version: 7.1.7(@types/node@24.9.1)(yaml@2.8.1)
 
-  libs/module-federation/react-host:
+  libs/module-federation/z-react-host:
     dependencies:
       '@emotion/react':
         specifier: ^11.13.5
@@ -107,7 +107,7 @@ importers:
         specifier: ^7.1.7
         version: 7.1.7(@types/node@24.9.1)(yaml@2.8.1)
 
-  libs/module-federation/react-remote:
+  libs/module-federation/z-react-remote:
     dependencies:
       '@emotion/react':
         specifier: ^11.13.5

@@ -1,4 +1,4 @@
-# Basic React Host
+# z-react-remote
 
 ## [MUI Installation](https://mui.com/material-ui/getting-started/installation/)
 
@@ -16,25 +16,26 @@ index.css
 Combined install
 `pnpm add @mui/material @emotion/react @emotion/styled @fontsource/roboto @mui/icons-material`
 
-## Module Federation Configuration
+## Module Federation Configuratione
 vite.confit.ts
 ```typescript
 export default defineConfig({
   plugins: [
     federation({
       exposes: {
-        './SharedComponent': './src/components/SharedComponent.tsx',
+        './App': './src/App.tsx',
+        './MuiButton': './src/components/MuiButton.tsx',
       },
-      filename: 'basicReactHostEntry.js',
-      name: 'basicReactHost',
+      filename: 'zReactRemoteEntry.js',
+      name: 'zReactRemote',
       remotes: {
-        basicReactRemote: {
-          entry: 'http://localhost:3201/basicReactRemoteEntry.js',
-          entryGlobalName: 'basicReactRemote',
-          name: 'basicReactRemote',
+        zReactHost: {
+          entry: 'http://localhost:3200/zReactHostEntry.js',
+          entryGlobalName: 'zReactHost',
+          name: 'zReactHost',
           shareScope: 'default',
           type: 'module',
-        },
+        }
       },
       shared: {
         '@emotion/react': {
@@ -71,13 +72,16 @@ export default defineConfig({
 ## Module Federation Integration
 App.tsx
 ```typescript
-const BasicReactRemote = lazy(
+const SharedComponent = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('basicReactRemote/App'),
-);
-
-const MuiButtonFromRemote = lazy(
-  // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('basicReactRemote/MuiButton'),
+  async () => import('zReactHost/SharedComponent'),
+  // Example of how to import a named export instead of default export
+  // const TheComponent = lazy(
+  //   async () => {
+  //     // @ts-expect-error Module federation remote import not recognized by TypeScript
+  //     const { SharedComponent } = await import('zReactHost/SharedComponent');
+  //     return { default: SharedComponent };
+  //   },
+  // );
 );
 ```

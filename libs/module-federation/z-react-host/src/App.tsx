@@ -1,24 +1,17 @@
-import { Add, Remove } from '@mui/icons-material';
-import { AppBar, Card, CardContent, Container, Link, Stack, Toolbar } from '@mui/material';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-
-import './App.css';
+import { AppBar, Container, Toolbar } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { lazy, useState } from 'react';
 
-import reactLogo from './assets/react.svg';
+import './App.css';
 
-import viteLogo from '/vite.svg';
-
-const BasicReactRemote = lazy(
+const ReactRemote = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('basicReactRemote/App'),
+  async () => import('zReactRemote/App'),
 );
 
 const MuiButtonFromRemote = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('basicReactRemote/MuiButton'),
+  async () => import('zReactRemote/MuiButton'),
 );
 
 function App() {
@@ -45,7 +38,7 @@ function App() {
       <Container
         maxWidth="md"
         sx={{ mt: 4 }}>
-        <BasicReactRemote />
+        <ReactRemote />
       </Container>
     </>
   );

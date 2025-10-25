@@ -12,13 +12,13 @@ export default defineConfig({
         './App': './src/App.tsx',
         './MuiButton': './src/components/MuiButton.tsx',
       },
-      filename: 'basicReactRemoteEntry.js',
-      name: 'basicReactRemote',
+      filename: 'zReactRemoteEntry.js',
+      name: 'zReactRemote',
       remotes: {
-        basicReactHost: {
-          entry: 'http://localhost:3200/basicReactHostEntry.js',
-          entryGlobalName: 'basicReactHost',
-          name: 'basicReactHost',
+        zReactHost: {
+          entry: 'http://localhost:3200/zReactHostEntry.js',
+          entryGlobalName: 'zReactHost',
+          name: 'zReactHost',
           shareScope: 'default',
           type: 'module',
         }
