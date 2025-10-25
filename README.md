@@ -69,3 +69,13 @@ MUI, tanstack-router and tanstack-query
 `pnpm dlx lerna init`
 
 `pnpm dlx lerna add-caching`
+
+## Module Federation
+
+`pnpm create vite libs/module-federation/basic-react-host --template react-ts`
+
+`pnpm create vite libs/module-federation/basic-react-remote --template react-ts`
+
+`pnpm -F basic-react-host add -D @module-federation/vite`
+
+`pnpm -F basic-react-remote add -D @module-federation/vite`

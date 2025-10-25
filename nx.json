@@ -17,6 +17,12 @@
     "basic-react-app": {
       "root": "libs/basic-react-app"
     },
+    "basic-react-host": {
+      "root": "libs/module-federation/basic-react-host"
+    },
+    "basic-react-remote": {
+      "root": "libs/module-federation/basic-react-remote"
+    },
     "mui-react-app": {
       "root": "libs/mui-react-app"
     },
