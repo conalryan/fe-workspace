@@ -26,28 +26,28 @@ function App() {
 
   return (
     <>
-      <Box>
-        <Link
-          href="https://vite.dev"
-          target="_blank">
-          <img
-            alt="Vite logo"
-            className="logo"
-            src={viteLogo}
-          />
-        </Link>
-        <Link
-          href="https://react.dev"
-          target="_blank">
-          <img
-            alt="React logo"
-            className="logo react"
-            src={reactLogo}
-          />
-        </Link>
-      </Box>
       <Card sx={{ marginBottom: 2, padding: 2 }}>
-        <Typography variant="h3">Basic React Remote</Typography>
+        <Box>
+          <Link
+            href="https://vite.dev"
+            target="_blank">
+            <img
+              alt="Vite logo"
+              className="logo"
+              src={viteLogo}
+            />
+          </Link>
+          <Link
+            href="https://react.dev"
+            target="_blank">
+            <img
+              alt="React logo"
+              className="logo react"
+              src={reactLogo}
+            />
+          </Link>
+        </Box>
+        <Typography variant="h3">React Remote</Typography>
         <MuiButton onClick={() => setCount((count) => count + 1)}>count is {count}</MuiButton>
       </Card>
       <SharedComponent />

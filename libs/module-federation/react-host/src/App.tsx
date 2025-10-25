@@ -1,9 +1,12 @@
+import { Add, Remove } from '@mui/icons-material';
+import { AppBar, Card, CardContent, Container, Link, Stack, Toolbar } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+
+import './App.css';
 import Typography from '@mui/material/Typography';
 import { lazy, useState } from 'react';
 
-import './App.css';
 import reactLogo from './assets/react.svg';
 
 import viteLogo from '/vite.svg';
@@ -23,43 +26,27 @@ function App() {
 
   return (
     <>
-      <Box>
-        <a
-          href="https://vite.dev"
-          target="_blank">
-          <img
-            alt="Vite logo"
-            className="logo"
-            src={viteLogo}
-          />
-        </a>
-        <a
-          href="https://react.dev"
-          target="_blank">
-          <img
-            alt="React logo"
-            className="logo react"
-            src={reactLogo}
-          />
-        </a>
-      </Box>
-      <Typography variant="h3">Basic React Host</Typography>
-      <Box className="card">
-        <Button
-          onClick={() => setCount((count) => count + 1)}
-          variant="contained">
-          count is {count}
-        </Button>
-        <Typography sx={{ mb: 1, mt: 2 }} variant="h6">
-          Shared MUI Button from Remote:
-        </Typography>
-        <MuiButtonFromRemote 
-          onClick={() => setCount((count) => count + 1)}
-          variant="outlined">
-          Remote MUI Button: {count}
-        </MuiButtonFromRemote>
-      </Box>
-      <BasicReactRemote />
+      <AppBar position="static">
+        <Toolbar>
+          <Typography
+            component="div"
+            sx={{ flexGrow: 1 }}
+            variant="h6">
+            React Host
+          </Typography>
+          <MuiButtonFromRemote
+            onClick={() => setCount((count) => count + 1)}
+            variant="outlined">
+            Remote MUI Button: {count}
+          </MuiButtonFromRemote>
+        </Toolbar>
+      </AppBar>
+
+      <Container
+        maxWidth="md"
+        sx={{ mt: 4 }}>
+        <BasicReactRemote />
+      </Container>
     </>
   );
 }
