@@ -1,8 +1,10 @@
+import Outlet from '@mui/icons-material/Outlet';
 import { Box, Link, Typography } from '@mui/material';
 import Card from '@mui/material/Card/Card';
-import { lazy, useState } from 'react';
 
 import './App.css';
+import { lazy, useState } from 'react';
+
 import reactLogo from './assets/react.svg';
 import MuiButton from './components/MuiButton';
 
@@ -51,6 +53,7 @@ function App() {
         <MuiButton onClick={() => setCount((count) => count + 1)}>count is {count}</MuiButton>
       </Card>
       <SharedComponent />
+      <Outlet />
     </>
   );
 }
