@@ -2,8 +2,11 @@ import { lazy, useState } from 'react';
 
 import reactLogo from './assets/react.svg';
 
-import viteLogo from '/vite.svg';
 import './App.css';
+import viteLogo from '/vite.svg';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const Remote = lazy(
   // @ts-expect-error Module federation remote import not recognized by TypeScript
@@ -15,7 +18,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <Box>
         <a
           href="https://vite.dev"
           target="_blank">
@@ -34,11 +37,15 @@ function App() {
             src={reactLogo}
           />
         </a>
-      </div>
-      <h1>Basic React Host</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-      </div>
+      </Box>
+      <Typography variant="h3">Basic React Host</Typography>
+      <Box className="card">
+        <Button
+          variant="contained"
+          onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </Button>
+      </Box>
       <Remote />
     </>
   );
