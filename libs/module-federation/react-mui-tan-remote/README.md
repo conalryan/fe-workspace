@@ -105,6 +105,17 @@ export const reactMuiTanRemoteRoute = createRoute({
 export default reactMuiTanRemoteRoute;
 ```
 
+## Tanstack Query Installation
+
+```bash
+pnpm add @tanstack/react-query
+
+pnpm add -D @tanstack/eslint-plugin-query
+
+pnpm add @tanstack/react-query-devtools
+```
+
+
 ## Module Federation Configuratione
 vite.confit.ts
 ```typescript

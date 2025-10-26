@@ -1,9 +1,10 @@
 import { createRoute } from '@tanstack/react-router';
 
+import { Todos } from '../../features/Todos';
 import { rootRoute } from '../rootRoute';
 
-export const helloWorldRoute = createRoute({
-  component: () => <h1>hello world</h1>,
+export const todosRoute = createRoute({
+  component: Todos,
   getParentRoute: () => rootRoute,
-  path: '/hello-world',
+  path: '/todos',
 });

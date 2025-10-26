@@ -1,6 +1,6 @@
-import Outlet from '@mui/icons-material/Outlet';
 import { Box, Link, Typography } from '@mui/material';
 import Card from '@mui/material/Card/Card';
+import { Outlet } from '@tanstack/react-router';
 
 import './App.css';
 import { lazy, useState } from 'react';

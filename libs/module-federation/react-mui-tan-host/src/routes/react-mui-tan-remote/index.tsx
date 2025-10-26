@@ -11,7 +11,7 @@ const reactMuiTanRemote = lazy(
 export const reactMuiTanRemoteRoute = createRoute({
   component: reactMuiTanRemote,
   getParentRoute: () => rootRoute,
-  path: 'react-mui-tan-remote',
+  path: '/react-mui-tan-remote',
 });
 
 export default reactMuiTanRemoteRoute;
