@@ -6,6 +6,9 @@ import { dependencies } from './package.json';
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    target: 'esnext',
+  },
   plugins: [
     federation({
       exposes: {

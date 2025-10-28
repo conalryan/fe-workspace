@@ -12,6 +12,9 @@
     "clean:node_modules": "pnpm -r exec rm -rf ./node_modules",
     "clean:nx": "rm -rf .nx",
     "dev": "lerna run dev --parallel",
+    "dev:lit": "lerna run dev --parallel --scope=\"lit-*\"",
+    "dev:module-federation": "lerna run dev --parallel --scope=react-mui-tan-host --scope=react-mui-tan-remote",
+    "dev:react": "lerna run dev --parallel --scope=\"react-*\"",
     "lint": "lerna run lint --parallel",
     "lint:fix": "lerna run lint:fix --parallel",
     "format": "lerna run format --parallel"
