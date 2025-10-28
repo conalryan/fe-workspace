@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { Button } from '@mui/material';
+import { Button, styled } from '@mui/material';
 
 interface MuiButtonProps {
   children: React.ReactNode;
@@ -8,18 +8,22 @@ interface MuiButtonProps {
   variant?: 'contained' | 'outlined' | 'text';
 }
 
+const StyledButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.tokens.color.Neutrals.Black
+}));
+
 export const MuiButton: FC<MuiButtonProps> = ({ 
   children,
   onClick, 
   variant = 'contained' 
 }) => (
-  <Button 
+  <StyledButton 
     onClick={onClick}
     sx={{ margin: 1 }}
     variant={variant}
   >
     {children}
-  </Button>
+  </StyledButton>
 );
 
 export default MuiButton;
