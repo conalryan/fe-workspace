@@ -1,4 +1,5 @@
-import { LitElement, html, noChange, nothing } from 'lit';
+// eslint-disable-next-line max-classes-per-file
+import { html, LitElement, noChange, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 @customElement('render-component')
@@ -93,6 +94,66 @@ export class RenderNoChange extends LitElement {
   /**
    * Render can return the sentinel values nothing and noChange.
    * cr. What is the use case of this?
+   * A:
+   * 1. Conditional Rendering with Performance Optimization
+   * When you want to conditionally prevent updates to avoid unnecessary DOM manipulations:
+   * ```typescript
+   * render() {
+   *    // Only update if data has actually changed
+   *    if (this.shouldUpdate && this.hasNewData) {
+   *      return html`<div>${this.data}</div>`;
+   *    }
+   *    return noChange; // Keep the previous rendered content
+   * }
+   * ```
+   * 2. In Template Expressions
+   * More commonly used within template expressions to conditionally update specific parts:
+   * ```typescript
+   * render() {
+   *   return html`
+   *     <div>
+   *       <h1>${this.title}</h1>
+   *       <p>${this.isLoading ? 'Loading...' : noChange}</p>
+   *       <!-- The paragraph content won't change if not loading -->
+   *     </div>
+   *   `;
+   * }
+   * ```
+   * 3. Custom Directives
+   * When creating custom directives that need to maintain previous state:
+   * ```typescript
+   * class MyDirective extends Directive {
+   *   render(value: any) {
+   *     if (this.shouldSkipUpdate(value)) {
+   *       return noChange;
+   *     }
+   *     return value;
+   *   }
+   * }
+   * ```
+   * 4. Performance in Lists
+   * When rendering lists where some items shouldn't update:
+   * ```typescript
+   * render() {
+   *   return html`
+   *     <ul>
+   *       ${this.items.map(item =>
+   *         item.isDirty
+   *           ? html`<li>${item.name}</li>`
+   *           : noChange
+   *       )}
+   *     </ul>
+   *   `;
+   * }
+   * ```
+   * Key Differences from nothing:
+   * - noChange: Keeps the previous rendered content unchanged
+   * - nothing: Removes/clears the content (renders as empty)
+   *
+   * In your current component, returning noChange from the entire render method means
+   * the component will maintain whatever was previously rendered, which might not be very
+   * useful since there's no previous content. It's more commonly used within template
+   * expressions for granular control over updates.
    */
   render() {
     return noChange;
@@ -104,9 +165,96 @@ export class RenderNothing extends LitElement {
   /**
    * Render can return the sentinel values nothing and noChange.
    * * cr. What is the use case of this?
+   * A:
+   * 1. Conditional Rendering - Hide Content
+   * When you want to conditionally show or hide entire sections:
+   * ```typescript
+   * render() {
+   *   if (!this.isVisible) {
+   *     return nothing; // Renders empty, effectively hiding the component
+   *   }
+   *   return html`<div>Visible content</div>`;
+   * }
+   * ```
+   * 2. In Template Expressions
+   * More commonly used within template expressions to conditionally render parts:
+   * ```typescript
+   * render() {
+   *   return html`
+   *     <div>
+   *       <h1>${this.title}</h1>
+   *       ${this.showDescription ? html`<p>${this.description}</p>` : nothing}
+   *       ${this.isLoggedIn ? html`<button>Logout</button>` : nothing}
+   *     </div>
+   *   `;
+   * }
+   * ```
+   * 3. Lists with Conditional Items
+   * When rendering lists where some items should be omitted:
+   * ```typescript
+   * render() {
+   *   return html`
+   *     <ul>
+   *       ${this.items.map(item =>
+   *         item.isVisible
+   *           ? html`<li>${item.name}</li>`
+   *           : nothing
+   *       )}
+   *     </ul>
+   *   `;
+   * }
+   * ```
+   * 4. Loading States
+   * When you want to show nothing while loading data:
+   * ```typescript
+   * render() {
+   *   if (this.isLoading) {
+   *     return nothing; // Show nothing while loading
+   *   }
+   *
+   *   if (this.hasError) {
+   *     return html`<div class="error">Error occurred</div>`;
+   *   }
+   *
+   *   return html`<div>${this.data}</div>`;
+   * }
+   * ```
+   * 5. Dynamic Slots or Placeholders
+   * ```typescript
+   * render() {
+   *   return html`
+   *     <div>
+   *       <header>Always visible</header>
+   *       ${this.renderMiddleSection()}
+   *       <footer>Always visible</footer>
+   *     </div>
+   *   `;
+   * }
+   *
+   * renderMiddleSection() {
+   *   if (!this.hasMiddleContent) {
+   *     return nothing; // No middle section at all
+   *   }
+   *   return html`<main>${this.middleContent}</main>`;
+   * }
+   * ```
+   * Key Differences:
+   * - nothing: Renders empty content (removes/hides DOM nodes)
+   * - noChange: Keeps the previous rendered content unchanged
+   * - Empty string '': Actually renders an empty text node (takes up space in DOM)
    */
   render() {
     return nothing;
+  }
+}
+
+// More practical example using nothing
+@customElement('conditional-content')
+export class ConditionalContent extends LitElement {
+  @property({ type: Boolean }) show = false;
+
+  render() {
+    return this.show ? html`<p>Content is visible!</p>` : nothing; // Completely hidden when show is false
   }
 }
 
@@ -141,16 +289,48 @@ export class RenderArray extends LitElement {
  */
 @customElement('render-composing-templates')
 class RenderComposingTemplates extends LitElement {
-
-  @property({attribute: false})
+  /**
+   * cr. What not just use @state instead?
+   * A:
+   * @property({ attribute: false }) vs @state:
+   *
+   * @property({ attribute: false }):
+   * - Public API: Intended to be set from outside the component
+   * - External Input: Parent components or JavaScript code should set this
+   * - Part of Component Interface: Documented as part of how to use the component
+   *
+   * @state:
+   * - Internal State: Private to the component, not meant to be set externally
+   * - Component's Own Data: Managed internally by the component itself
+   * - Implementation Detail: Not part of the public API
+   *
+   * Decision Guide:
+   * Use @property({ attribute: false }) when:
+   * - Data comes from parent components
+   * - It's part of the component's public API
+   * - External code should be able to set it
+   * - It's configuration or input data
+   *
+   * Use @state when:
+   * - Data is managed internally
+   * - It's derived from user interactions
+   * - It's temporary UI state
+   * - External code shouldn't touch it
+   *
+   * In this example, article is meant to be passed in from outside:
+   * ```html
+   * <render-composing-templates></render-composing-templates>
+   * <script>
+   * const component = document.querySelector('render-composing-templates');
+   * component.article = { text: 'Custom text', title: 'Dynamic Title' };
+   * </script>
+   * ```
+   */
+  @property({ attribute: false })
   article = {
-    title: 'My Nifty Article',
     text: 'Some witty text.',
+    title: 'My Nifty Article',
   };
-
-  headerTemplate() {
-    return html`<header>${this.article.title}</header>`;
-  }
 
   articleTemplate() {
     return html`<article>${this.article.text}</article>`;
@@ -160,11 +340,11 @@ class RenderComposingTemplates extends LitElement {
     return html`<footer>Your footer here.</footer>`;
   }
 
+  headerTemplate() {
+    return html`<header>${this.article.title}</header>`;
+  }
+
   render() {
-    return html`
-      ${this.headerTemplate()}
-      ${this.articleTemplate()}
-      ${this.footerTemplate()}
-    `;
+    return html` ${this.headerTemplate()} ${this.articleTemplate()} ${this.footerTemplate()} `;
   }
 }

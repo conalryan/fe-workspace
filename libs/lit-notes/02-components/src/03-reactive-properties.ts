@@ -1,8 +1,30 @@
-import { LitElement, html } from 'lit';
+/* eslint-disable sonarjs/no-identical-functions */
+/* eslint-disable max-classes-per-file */
+import { html, LitElement } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 @customElement('reactive-properties')
 export class ReactiveProperties extends LitElement {
+
+  /**
+   * Class fields have a problematic interaction with reactive properties.
+   * Class fields are defined on the element instance whereas reactive properties are defined as accessors on the element prototype.
+   * According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property.
+   * This means that reactive property accessors do not function when class fields are used such that setting the property won't trigger an element update.
+   */
+  aClassField = "won't trigger an update";
+
+  /**
+   * The argument to the @property decorators is an options object.
+   * Omitting the argument is equivalent to specifying the default value for all options.
+   *
+   * attribute
+   * - Whether the property is associated with an attribute, or a custom name for the associated attribute.
+   * - Default: true.
+   * - If attribute is false, the converter, reflect and type options are ignored.
+   */
+  @property()
+  aPropWithOptions: any;
 
   /**
    * - Inputs are stored as JavaScript class fields or properties.
@@ -38,35 +60,10 @@ export class ReactiveProperties extends LitElement {
   private _counter = 0;
 
   /**
-   * The argument to the @property decorators is an options object.
-   * Omitting the argument is equivalent to specifying the default value for all options.
-   *
-   * attribute
-   * - Whether the property is associated with an attribute, or a custom name for the associated attribute.
-   * - Default: true.
-   * - If attribute is false, the converter, reflect and type options are ignored.
-   */
-  @property()
-  aPropWithOptions: any;
-
-  /**
-   * Class fields have a problematic interaction with reactive properties.
-   * Class fields are defined on the element instance whereas reactive properties are defined as accessors on the element prototype.
-   * According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property.
-   * This means that reactive property accessors do not function when class fields are used such that setting the property won't trigger an element update.
-   */
-  aClassField = "won't trigger an update";
-
-  /**
    * If the parent property is not reactive, the child component will not update!
    */
   @state()
   private _inputCount = 0;
-
-  private _handleRerender() {
-    this._inputCount++;
-    console.log('[ReactiveProperties]]::_handleRerender inputCount', this._inputCount);
-  }
 
   render() {
     return html`
@@ -77,19 +74,24 @@ export class ReactiveProperties extends LitElement {
       </main>
     `;
   }
+
+  private _handleRerender() {
+    this._inputCount++;
+    console.info('[ReactiveProperties]]::_handleRerender inputCount', this._inputCount);
+  }
 }
 
 @customElement('public-reactive-properties')
 export class PublicReactiveProperties extends LitElement {
-  private _renderCount = 0;
-
   @property({ type: Number })
   set count(input: number) {
-    console.log('[PublicReactiveProperties]::count::setter', input);
+    console.info('[PublicReactiveProperties]::count::setter', input);
     this._inputCount = input;
-  };
-  get count() { return this._inputCount; }
+  }
+
+  get count() { return this._inputCount; };
   private _inputCount = 0;
+  private _renderCount = 0;
 
   render() {
     this._renderCount++;
@@ -160,6 +162,21 @@ export class PropertyOptions extends LitElement {
 export class ReactivePropertiesAttributes extends LitElement {
 
   /**
+   * To prevent an observed attribute from being created for a property, set attribute to false.
+   * The property will not be initialized from attributes in markup, and attribute changes won't affect it.
+   * No observed attribute for this property
+   */
+  @property({ attribute: false })
+  myData = {};
+
+  /**
+   * To create an observed attribute with a different name, set attribute to a string:
+   * Observed attribute will be called my-name
+   */
+  @property({ attribute: 'my-name' })
+  myName = 'Ogden';
+
+  /**
    * By default, Lit creates a corresponding observed attribute for all public reactive properties.
    * The name of the observed attribute is the property name, lowercased:
    * observed attribute name is "myvalue"
@@ -171,21 +188,6 @@ export class ReactivePropertiesAttributes extends LitElement {
    */
   @property({ type: Number })
   myValue = 0;
-
-  /**
-   * To create an observed attribute with a different name, set attribute to a string:
-   * Observed attribute will be called my-name
-   */
-  @property({ attribute: 'my-name' })
-  myName = 'Ogden';
-
-  /**
-   * To prevent an observed attribute from being created for a property, set attribute to false.
-   * The property will not be initialized from attributes in markup, and attribute changes won't affect it.
-   * No observed attribute for this property
-   */
-  @property({ attribute: false })
-  myData = {};
 
   render() {
     return html`

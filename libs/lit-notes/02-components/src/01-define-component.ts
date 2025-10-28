@@ -1,19 +1,19 @@
-import { LitElement, html } from 'lit';
+import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 /**
  * 1. Export a class that extends LitElement.
  *
  * 2. Regitster a custom element with the browser:
- *    a) Use the @customElement decorator (shorthand for customElements.define.
+ *    a) Use the @customElement decorator (shorthand for customElements.define(...).
  *    b) Call define() directly `customElements.define('define-component', DefineComponent);`
  */
 @customElement('define-component')
 export class DefineComponent extends LitElement {
-  header = 'Define a component';
-
   @property({type: Number})
-  aNumber: number = 5;
+  aNumber = 5;
+
+  header = 'Define a component';
 
   render() {
     return html`
