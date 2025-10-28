@@ -39,12 +39,21 @@ importers:
       babel-plugin-template-html-minifier:
         specifier: ^4.1.0
         version: 4.1.0
+      conalryan-eslint-config:
+        specifier: workspace:*
+        version: link:../../../packages/conalryan-eslint-config
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
+      eslint:
+        specifier: ^9.36.0
+        version: 9.38.0
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
       rimraf:
         specifier: ^5.0.9
         version: 5.0.10
@@ -6116,7 +6125,7 @@ packages:
         optional: true
 
   vite@7.1.7:
-    resolution: {integrity: sha512-VbA8ScMvAISJNJVbRDTJdCwqQoAareR/wutevKanhR2/1EkoXVZVkkORaYm/tNVCjP/UDTKtcw3bAkwOUdedmA==, tarball: https://repos.akamai.com:443/artifactory/api/npm/npmjs-repos/vite/-/vite-7.1.7.tgz}
+    resolution: {integrity: sha512-VbA8ScMvAISJNJVbRDTJdCwqQoAareR/wutevKanhR2/1EkoXVZVkkORaYm/tNVCjP/UDTKtcw3bAkwOUdedmA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:

@@ -1,13 +1,11 @@
-import { LitElement, html, css } from 'lit';
-import { property, customElement } from 'lit/decorators.js';
+import { css, html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 const logo = new URL('../../assets/open-wc-logo.svg', import.meta.url).href;
 
 @customElement('app-lit-introduction')
 export class AppLitIntroduction extends LitElement {
-  @property({ type: String }) header = 'Introduction';
-
-  static styles = css`
+  static readonly styles = css`
     :host {
       min-height: 100vh;
       display: flex;
@@ -49,6 +47,8 @@ export class AppLitIntroduction extends LitElement {
       margin-left: 5px;
     }
   `;
+
+  @property({ type: String }) header = 'Introduction';
 
   render() {
     return html`
