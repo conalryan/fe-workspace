@@ -1,0 +1,54 @@
+{
+  "name": "@conalryan/react-mui-core-mf",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./foundations": {
+      "import": "./dist/foundations/index.js",
+      "types": "./dist/foundations/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly --declaration --outDir dist",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css,md}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\"",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@linode/design-language-system": "^5.0.0",
+    "@fontsource/fira-code": "^5.1.1",
+    "@fontsource/nunito-sans": "^5.1.1",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
+    "@mui/utils": "^7.1.0",
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0",
+    "tss-react": ">=4.0.0"
+  },
+  "devDependencies": {
+    "conalryan-eslint-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.38.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.7.2",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.2.3"
+  }
+}
