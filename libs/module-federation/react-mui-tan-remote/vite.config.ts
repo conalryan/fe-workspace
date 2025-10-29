@@ -19,7 +19,7 @@ export default defineConfig({
       name: 'reactMuiTanRemote',
       remotes: {
         reactMuiTanHost: {
-          entry: 'http://localhost:4100/reactMuiTanHostEntry.js',
+          entry: 'http://localhost:4200/reactMuiTanHostEntry.js',
           entryGlobalName: 'reactMuiTanHost',
           name: 'reactMuiTanHost',
           shareScope: 'default',

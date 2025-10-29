@@ -11,16 +11,14 @@ export default defineConfig({
   },
   plugins: [
     federation({
-      exposes: {
-        './SharedComponent': './src/components/SharedComponent.tsx',
-      },
-      filename: 'reactMuiTanHostEntry.js',
-      name: 'reactMuiTanHost',
+      exposes: {},
+      filename: 'reactMuiTanHostBasicEntry.js',
+      name: 'reactMuiTanHostBasic',
       remotes: {
-        reactMuiTanRemote: {
-          entry: 'http://localhost:4201/reactMuiTanRemoteEntry.js',
-          entryGlobalName: 'reactMuiTanRemote',
-          name: 'reactMuiTanRemote',
+        reactMuiTanBasicRemote: {
+          entry: 'http://localhost:4201/reactMuiTanBasicRemoteEntry.js',
+          entryGlobalName: 'reactMuiTanBasicRemote',
+          name: 'reactMuiTanBasicRemote',
           shareScope: 'default',
           type: 'module',
         },
