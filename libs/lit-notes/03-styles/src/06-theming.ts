@@ -1,9 +1,9 @@
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import { css, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 @customElement('theming-element')
 export class ThemingElement extends LitElement {
-  static styles = css`
+  static readonly styles = css`
     :host {
       color: var(--theming-element-text-color, black);
       background: var(--theming-element-background-color, white);

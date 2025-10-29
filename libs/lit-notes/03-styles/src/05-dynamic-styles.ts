@@ -1,11 +1,11 @@
-import { LitElement, html, css } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { styleMap } from "lit/directives/style-map.js";
+import { css, html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 
-@customElement("dynamic-styles")
+@customElement('dynamic-styles')
 export class DynamicStyles extends LitElement {
-  static styles = css`
+  static readonly styles = css`
     .someclass {
       border: 1px solid red;
       padding: 4px;
@@ -15,13 +15,15 @@ export class DynamicStyles extends LitElement {
     }
   `;
 
-  @property() classes = { someclass: true, anotherclass: true };
+  @property() classes = { anotherclass: true, someclass: true };
 
-  @property() styles = { color: "lightgreen", fontFamily: "Roboto" };
+  @property() styles = { color: 'lightgreen', fontFamily: 'Roboto' };
 
   protected render() {
     return html`
-      <div class=${classMap(this.classes)} style=${styleMap(this.styles)}>
+      <div
+        class=${classMap(this.classes)}
+        style=${styleMap(this.styles)}>
         Some content
       </div>
     `;

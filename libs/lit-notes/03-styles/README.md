@@ -55,6 +55,7 @@ When writing components intended to be subclassed in TypeScript, the `static st
 // so that subclassers can assign e.g. `[SuperElement.styles, css`...`]`;
 static styles: CSSResultGroup = css`...`;
 ```
+
 ### Sharing styles
   
 You can share styles between components by creating a module that exports tagged styles:
@@ -97,6 +98,7 @@ export class SharingStyles extends LitElement {
 ```
 
 Styles scoped to an element's shadow tree don't affect the main document or other shadow trees. Similarly, with the exception of [inherited CSS properties](https://lit.dev/docs/components/styles/#inheritance), document-level styles don't affect the contents of a shadow tree.
+
 ### Scoped styles
 We recommend using the [static `styles` class field](https://lit.dev/docs/components/styles/#add-styles) for optimal performance. However, sometimes you may want to define styles in the Lit template. There are two ways to add scoped styles in the template:
 - Add styles using a [`<style>` element](https://lit.dev/docs/components/styles/#style-element).
@@ -143,11 +145,13 @@ To mitigate this cost, separate styles that require per-instance evaluation from
     const redStyle = html`<style> :host { color: red; } </style>`;
     return html`${this.red ? redStyle : ''}`
 ```
+
 ### Import an external stylesheet
 While you can include an external style sheet in your template with a `<link>`, we do not recommend this approach. Instead, styles should be placed in the [static `styles` class field](https://lit.dev/docs/components/styles/#add-styles).
 - The [ShadyCSS polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) doesn't support external style sheets.
 - External styles can cause a flash-of-unstyled-content (FOUC) while they load.
 - The URL in the `href` attribute is relative to the **main document**. This is okay if you're building an app and your asset URLs are well-known, but avoid using external style sheets when building a reusable element.
+
 ### Dynamic classes and styles
 Lit offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
 

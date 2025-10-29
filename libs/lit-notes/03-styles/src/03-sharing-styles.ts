@@ -1,10 +1,11 @@
-import { LitElement, css, html } from 'lit';
-import { buttonStyles } from './styles.js';
+import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
+
+import { buttonStyles } from './styles.js';
 
 @customElement('sharing-styles')
 export class SharingStyles extends LitElement {
-  static styles = [
+  static readonly styles = [
     buttonStyles,
     // Note that the host element can be affected by styles from outside the shadow tree, as well, 
     // so you should consider the styles you set in :host and :host() rules 

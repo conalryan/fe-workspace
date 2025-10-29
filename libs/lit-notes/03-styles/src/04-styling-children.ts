@@ -1,12 +1,12 @@
-import { LitElement, html, css } from "lit";
-import { customElement } from "lit/decorators.js";
+import { css, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
-@customElement("styling-children")
+@customElement('styling-children')
 export class StylingChildren extends LitElement {
   // Also, children can be styled from outside the shadow tree,
   // so you should regard your ::slotted() styles as default styles that can be overridden.
   // WARN: Don't put comments inside the css block
-  static styles = css`
+  static readonly styles = css`
     ::slotted(*) {
       color: green;
       font-family: Roboto;
@@ -17,7 +17,7 @@ export class StylingChildren extends LitElement {
     div ::slotted(*) {
       color: red;
     }
-    ::slotted([slot="hi"]) {
+    ::slotted([slot='hi']) {
       color: purple;
     }
   `;
