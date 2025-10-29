@@ -11,18 +11,12 @@ export default defineConfig({
   },
   plugins: [
     federation({
-      exposes: {},
-      filename: 'basicHostEntry.js',
-      name: 'basicHost',
-      remotes: {
-        basicRemote: {
-          entry: 'http://localhost:4101/basicRemoteEntry.js',
-          entryGlobalName: 'basicRemote',
-          name: 'basicRemote',
-          shareScope: 'default',
-          type: 'module',
-        },
+      exposes: {
+        './BasicApp': './src/App.tsx',
       },
+      filename: 'basicRemoteEntry.js',
+      name: 'basicRemote',
+      remotes: {},
       shared: {
         '@emotion/react': {
           requiredVersion: dependencies['@emotion/react'],

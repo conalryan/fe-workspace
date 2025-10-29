@@ -1,4 +1,5 @@
 import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
+import { lazy } from 'react';
 
 import { Root } from './Root';
 
@@ -11,23 +12,21 @@ const indexRoute = createRoute({
   path: '/',
 });
 
+const BasicApp = lazy(
+  // @ts-expect-error Module federation remote import not recognized by TypeScript
+  async () => import('basicRemote/BasicApp'),
+);
+
 const fooRoute = createRoute({
-  component: () => <div>Foo here...</div>,
+  component: BasicApp,
   getParentRoute: () => rootRoute,
   path: '/foo',
-});
-
-const barRoute = createRoute({
-  component: () => <div>Bar here...</div>,
-  getParentRoute: () => rootRoute,
-  path: '/bar',
 });
 
 
 export const routeTree = rootRoute.addChildren([
   indexRoute,
   fooRoute,
-  barRoute,
 ]);
 
 export const router = createRouter({
