@@ -11,8 +11,23 @@ const indexRoute = createRoute({
   path: '/',
 });
 
+const fooRoute = createRoute({
+  component: () => <div>Foo here...</div>,
+  getParentRoute: () => rootRoute,
+  path: '/foo',
+});
+
+const barRoute = createRoute({
+  component: () => <div>Bar here...</div>,
+  getParentRoute: () => rootRoute,
+  path: '/bar',
+});
+
+
 export const routeTree = rootRoute.addChildren([
   indexRoute,
+  fooRoute,
+  barRoute,
 ]);
 
 export const router = createRouter({
