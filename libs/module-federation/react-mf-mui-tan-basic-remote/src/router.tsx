@@ -24,7 +24,7 @@ export const routeTree = rootRoute.addChildren([
 ]);
 
 export const router = createRouter({
-  defaultNotFoundComponent: () => <p>Not found!!</p>,
+  defaultNotFoundComponent: () => <p>Basic Remote Not found!!</p>,
   routeTree,
 });
 

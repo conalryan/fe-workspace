@@ -1,6 +1,6 @@
 import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
-import { lazy } from 'react';
 
+import { RemoteAppWrapper } from './RemoteAppWrapper';
 import { Root } from './Root';
 
 const rootRoute = createRootRoute({
@@ -12,17 +12,11 @@ const indexRoute = createRoute({
   path: '/',
 });
 
-const BasicApp = lazy(
-  // @ts-expect-error Module federation remote import not recognized by TypeScript
-  async () => import('basicRemote/BasicApp'),
-);
-
 const fooRoute = createRoute({
-  component: BasicApp,
+  component: RemoteAppWrapper,
   getParentRoute: () => rootRoute,
-  path: '/foo',
+  path: '/feat/$',
 });
-
 
 export const routeTree = rootRoute.addChildren([
   indexRoute,

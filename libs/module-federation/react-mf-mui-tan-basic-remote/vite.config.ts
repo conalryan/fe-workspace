@@ -13,6 +13,7 @@ export default defineConfig({
     federation({
       exposes: {
         './BasicApp': './src/App.tsx',
+        './FeatureApp': './src/FeatureApp.tsx',
       },
       filename: 'basicRemoteEntry.js',
       name: 'basicRemote',
