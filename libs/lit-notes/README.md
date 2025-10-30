@@ -54,6 +54,8 @@ Customize update
 
 External lifecycle hooks
 
+All lifecycle hook logging
+
 ## [05-shadow-dom](https://lit.dev/docs/components/shadow-dom/)
 
 Accessing nodes

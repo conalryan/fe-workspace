@@ -12,6 +12,7 @@ import './08-performing-update';
 import './09-completing-update';
 import './10-customize-update';
 import './11-external-lifecycle-hooks';
+import './12-all-lifecycle-hooks';
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -102,6 +103,12 @@ export class AppElement extends LitElement {
 
         <h3>11 - External Lifecycle Hooks</h3>
         <external-lifecycle-hooks></external-lifecycle-hooks>
+
+        <h3>12 - All Lifecycle Hooks</h3>
+        <all-lifecycle-hooks
+          .message=${this.msg}
+          @message-change=${this._handleMessageChange}>
+        </all-lifecycle-hooks>
       </main>
     `;
   }
@@ -112,6 +119,11 @@ export class AppElement extends LitElement {
   }
 
   private _handleInput(e: Event) {
+    const input = e.target as HTMLInputElement;
+    this.msg = input.value;
+  }
+
+  private _handleMessageChange(e: CustomEvent) {
     const input = e.target as HTMLInputElement;
     this.msg = input.value;
   }

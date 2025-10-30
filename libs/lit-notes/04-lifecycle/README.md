@@ -187,3 +187,16 @@ At a high level, the reactive update cycle is:
     2. The component’s render method is called to update its internal DOM.
 3. The update is completed and the `updateComplete` promise is resolved.
 
+Lifecycle Methods Implemented:
+1. `constructor()` - Element creation
+2. `connectedCallback()` - Element added to DOM
+3. `attributeChangedCallback()` - Attribute changes (can happen anytime)
+4. `shouldUpdate()` - Decide if update should proceed
+5. `willUpdate()` - Before update starts
+6. `render()` - Template rendering
+7. `update()` - Perform the update
+8. `getUpdateComplete()` - Promise for completion
+9. `firstUpdated()` - After first update
+10. `updated()` - After each update
+11. `adoptedCallback()` - Element moved to new document (rare)
+12. `disconnectedCallback()` - Element removed from DOM
