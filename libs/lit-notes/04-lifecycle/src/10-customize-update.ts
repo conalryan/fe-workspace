@@ -1,7 +1,8 @@
-import { html, LitElement } from "lit";
-import { customElement } from "lit/decorators.js";
+/* eslint-disable max-classes-per-file */
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
-@customElement("child-element")
+@customElement('child-element')
 export class ChildElement extends LitElement {
   render() {
     return html`<div>Child Element</div>`;
@@ -21,9 +22,37 @@ export class ChildElement extends LitElement {
  * The hasUpdated property returns true if the component has updated at least once.
  * You can use hasUpdated in any of the lifecycle methods to perform work only if the component has not yet updated.
  */
-@customElement("customize-update-element")
+@customElement('customize-update-element')
 export class CustomizeUpdateElement extends LitElement {
   private _myChild!: ChildElement;
+
+  /**
+   * `getUpdateComplete()`
+   * Used to await additional conditions before fulfilling the updateComplete promise.
+   * e.g. to await the update of a child element.
+   * First await `super.getUpdateComplete`(), then any subsequent state.
+   *
+   * It's recommended to override the `getUpdateComplete()` method instead of the `updateComplete` getter
+   * to ensure compatibility with users who are using TypeScript's ES5 output (see TypeScript#338).
+   */
+  async getUpdateComplete() {
+    console.info('Info: getUpdateComplete called for', this.localName);
+    const result = await super.getUpdateComplete();
+    await this._myChild.updateComplete;
+    return result;
+  }
+
+  render() {
+    return html`
+      <div>CustomizeUpdateElement</div>
+      <child-element></child-element>
+    `;
+  }
+
+  protected firstUpdated(): void {
+    console.info('Info: firstUpdated called for', this.localName);
+    this._myChild = this.shadowRoot!.querySelector('child-element')!;
+  }
 
   /**
    * Override `scheduleUpdate()` to customize the timing of the update.
@@ -36,39 +65,11 @@ export class CustomizeUpdateElement extends LitElement {
    * In either case, the next update doesn't start until the promise returned by `scheduleUpdate()` resolves.
    */
   protected override async scheduleUpdate(): Promise<void> {
-    console.log("[CustomizeUpdateElement] scheduleUpdate");
+    console.info('Info: scheduleUpdate called for', this.localName);
     // the following code schedules the update to occur after the next frame paints,
     // which can reduce jank if the update is expensive:
     await new Promise((resolve) => setTimeout(resolve));
     // If you override scheduleUpdate(), it's your responsibility to call super.scheduleUpdate() to perform the pending update.
     super.scheduleUpdate();
-  }
-
-  /**
-   * `getUpdateComplete()`
-   * Used to await additional conditions before fulfilling the updateComplete promise.
-   * e.g. to await the update of a child element.
-   * First await `super.getUpdateComplete`(), then any subsequent state.
-   *
-   * It's recommended to override the `getUpdateComplete()` method instead of the `updateComplete` getter
-   * to ensure compatibility with users who are using TypeScript's ES5 output (see TypeScript#338).
-   */
-  async getUpdateComplete() {
-    console.log("[CustomizeUpdateElement] getUpdateComplete");
-    const result = await super.getUpdateComplete();
-    await this._myChild.updateComplete;
-    return result;
-  }
-
-  protected firstUpdated(): void {
-    console.log("[CustomizeUpdateElement] firstUpdated");
-    this._myChild = this.shadowRoot!.querySelector("child-element")!;
-  }
-
-  render() {
-    return html`
-      <div>CustomizeUpdateElement</div>
-      <child-element></child-element>
-    `;
   }
 }

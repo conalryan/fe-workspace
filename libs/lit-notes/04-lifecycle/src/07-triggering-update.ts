@@ -1,5 +1,5 @@
-import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 /**
  * An update is triggered when a reactive property changes or the `requestUpdate()` method is called.
@@ -20,7 +20,7 @@ import { customElement } from "lit/decorators.js";
  * this.requestUpdate('state', this._previousState);
  * ```
  */
-@customElement("triggering-update-element")
+@customElement('triggering-update-element')
 export class TriggeringUpdateElement extends LitElement {
   private _timerInterval: number | undefined;
 
@@ -28,7 +28,7 @@ export class TriggeringUpdateElement extends LitElement {
     super.connectedCallback();
     // Call `requestUpdate()` to schedule an explicit update.
     this._timerInterval = setInterval(() => {
-      console.log("[TriggeringUpdateElement]::requestUpdate()");
+      console.info('[TriggeringUpdateElement]::requestUpdate()');
       this.requestUpdate();
     }, 1000);
   }

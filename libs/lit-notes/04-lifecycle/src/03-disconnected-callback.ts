@@ -1,10 +1,10 @@
-import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
-@customElement("disconnected-callback-element")
+@customElement('disconnected-callback-element')
 export class DisconnectedCallbackElement extends LitElement {
   _handleKeydown = (e: KeyboardEvent) => {
-    console.log("Key pressed:", e.key);
+    console.info('Key pressed:', e.key);
   };
 
   /**
@@ -17,14 +17,15 @@ export class DisconnectedCallbackElement extends LitElement {
    */
   connectedCallback() {
     super.connectedCallback();
-    console.log("DisconnectedCallbackElement::connectedCallback");
+    console.info('DisconnectedCallbackElement::connectedCallback');
     // WARN: The listener is added to the window object, so it will be triggered for all key presses in the browser.
-    window.addEventListener("keydown", this._handleKeydown);
+    window.addEventListener('keydown', this._handleKeydown);
   }
 
   /**
    * disconnectedCallback()
-   * nvoked when a component is removed from the document's DOM.
+   * Invoked when a component is removed from the document's DOM.
+   *
    * Lit behavior
    * Pauses the reactive update cycle. It is resumed when the element is connected.
    *
@@ -39,8 +40,8 @@ export class DisconnectedCallbackElement extends LitElement {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    console.log("DisconnectedCallbackElement::disconnectedCallback");
-    window.removeEventListener("keydown", this._handleKeydown);
+    console.info('DisconnectedCallbackElement::disconnectedCallback');
+    window.removeEventListener('keydown', this._handleKeydown);
   }
 
   render() {

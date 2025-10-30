@@ -1,5 +1,5 @@
-import { html, LitElement, PropertyValues } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { html, LitElement, PropertyValues } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
 
 /**
  * After `update()` is called to render changes to the component's DOM,
@@ -8,7 +8,7 @@ import { customElement, state } from "lit/decorators.js";
  * `updateComplete`: Promise that resolves when the element has finished updating.
  * Use `updateComplete` to wait for an update.
  * The resolved value is a boolean indicating if there are no pending updates.
- * The `updateComplete` promise rejects if there's an unhandled error during the update cycle. 
+ * The `updateComplete` promise rejects if there's an unhandled error during the update cycle.
  *
  * By default, the `updateComplete` promise resolves when the element's update has completed,
  * but does not wait for any children to have completed their updates.
@@ -30,9 +30,9 @@ import { customElement, state } from "lit/decorators.js";
  * 3. **Events**: It is a good practice to dispatch events from components after rendering has completed,
  * so that the event's listeners see the fully rendered state of the component.
  * To do so, you can await the `updateComplete` promise before firing the event.
- * 
+ *
  * Handling Errors
- * If you have an uncaught exception in a lifecycle method like `render()` or `update()`, it causes the `updateComplete` promise to reject. 
+ * If you have an uncaught exception in a lifecycle method like `render()` or `update()`, it causes the `updateComplete` promise to reject.
  * If you have code in a lifecycle method that can throw an exception, it's good practice to put it inside a `try/catch` statement.
  * You may also want to use a `try/catch` if you're awaiting the `updateComplete` promise:
  * ```ts
@@ -42,8 +42,8 @@ import { customElement, state } from "lit/decorators.js";
  *   // handle error
  * }
  * ```
- * 
- * In some cases, code may throw in unexpected places. As a fallback, you can add a handler for `window.onunhandledrejection` to catch these issues. 
+ *
+ * In some cases, code may throw in unexpected places. As a fallback, you can add a handler for `window.onunhandledrejection` to catch these issues.
  * e.g. you could use this report errors back to a backend service to help diagnose issues that are hard to reproduce.
  * ```ts
  * window.onunhandledrejection = function(e) {
@@ -51,10 +51,17 @@ import { customElement, state } from "lit/decorators.js";
  * }
  * ```
  */
-@customElement("completing-update-element")
+@customElement('completing-update-element')
 export class CompletingUpdateElement extends LitElement {
   @state()
   loggedIn = false;
+  async _loginClickHandler() {
+    this.loggedIn = true;
+    // Wait for `loggedIn` state to be rendered to the DOM
+    await this.updateComplete;
+    this.dispatchEvent(new Event('login'));
+  }
+
   /**
    * `firstUpdated()`
    * Called after the component's DOM has been updated the first time, immediately before `updated()` is called.
@@ -72,11 +79,22 @@ export class CompletingUpdateElement extends LitElement {
    * e.g. focusing a particular rendered element or adding a `ResizeObserver` or `IntersectionObserver` to an element.
    */
   override firstUpdated(_changedProperties: PropertyValues): void {
-    console.log("[CompletingUpdateElement] firstUpdated", _changedProperties);
-    const input = this.shadowRoot?.getElementById("complete-update");
+    console.info('[CompletingUpdateElement] firstUpdated', _changedProperties);
+    const input = this.shadowRoot?.getElementById('complete-update');
     if (input) {
       input.focus();
     }
+  }
+
+  override render() {
+    return html`
+      <div>CompletingUpdateElement</div>
+      <input
+        type="text"
+        id="complete-update" />
+      <button @click=${this._loginClickHandler}>Login</button>
+      <p>Logged in: ${this.loggedIn}</p>
+    `;
   }
 
   /**
@@ -96,25 +114,9 @@ export class CompletingUpdateElement extends LitElement {
    * e.g. code that performs animation may need to measure the element DOM.
    */
   override updated(_changedProperties: PropertyValues): void {
-    console.log("[CompletingUpdateElement] updated", _changedProperties);
-    if (_changedProperties.has("collapsed")) {
+    console.info('[CompletingUpdateElement] updated', _changedProperties);
+    if (_changedProperties.has('collapsed')) {
       // this._measureDOM();
     }
-  }
-
-  async _loginClickHandler() {
-    this.loggedIn = true;
-    // Wait for `loggedIn` state to be rendered to the DOM
-    await this.updateComplete;
-    this.dispatchEvent(new Event("login"));
-  }
-
-  override render() {
-    return html`
-      <div>CompletingUpdateElement</div>
-      <input type="text" id="complete-update" />
-      <button @click=${this._loginClickHandler}>Login</button>
-      <p>Logged in: ${this.loggedIn}</p>
-    `;
   }
 }

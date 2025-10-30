@@ -1,10 +1,10 @@
-import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
-@customElement("connected-callback-element")
+@customElement('connected-callback-element')
 export class ConnectedCallbackElement extends LitElement {
   _handleKeydown = (e: KeyboardEvent) => {
-    console.log("Key pressed:", e.key);
+    console.info('Key pressed:', e.key);
   };
 
   /**
@@ -15,9 +15,9 @@ export class ConnectedCallbackElement extends LitElement {
    */
   connectedCallback() {
     super.connectedCallback();
-    console.log("ConnectedCallbackElement::connectedCallback");
+    console.info('ConnectedCallbackElement::connectedCallback');
     // WARN: The listener is added to the window object, so it will be triggered for all key presses in the browser.
-    window.addEventListener("keydown", this._handleKeydown);
+    window.addEventListener('keydown', this._handleKeydown);
   }
 
   render() {

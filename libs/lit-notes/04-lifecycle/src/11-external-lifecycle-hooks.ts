@@ -1,5 +1,5 @@
-import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 /**
  * External Lifecycle Hooks: controllers and decorators
@@ -44,7 +44,7 @@ import { customElement } from "lit/decorators.js";
  * `removeController()`
  * `removeController()` removes a reactive controller so it no longer receives lifecycle callbacks from this component.
  */
-@customElement("external-lifecycle-hooks")
+@customElement('external-lifecycle-hooks')
 export class ExternalLifecycleHooks extends LitElement {
   render() {
     return html`<div>ExternalLifecycleHooks</div>`;
