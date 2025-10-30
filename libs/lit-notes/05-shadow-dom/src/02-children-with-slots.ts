@@ -1,6 +1,6 @@
-import { LitElement } from "lit";
-import { html } from "lit/html.js";
-import { customElement } from "lit/decorators.js";
+import { LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { html } from 'lit/html.js';
 
 /**
  * Rendering children with slots
@@ -31,7 +31,7 @@ import { customElement } from "lit/decorators.js";
  * <slot>I am fallback content</slot>
  * ```
  */
-@customElement("children-with-slots")
+@customElement('children-with-slots')
 export class ChildrenWithSlots extends LitElement {
   render() {
     return html`

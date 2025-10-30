@@ -184,6 +184,15 @@ importers:
         specifier: ^3.2.1
         version: 3.3.1
     devDependencies:
+      conalryan-eslint-config:
+        specifier: workspace:*
+        version: link:../../../packages/conalryan-eslint-config
+      eslint:
+        specifier: ^9.36.0
+        version: 9.38.0
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
       typescript:
         specifier: ~5.6.2
         version: 5.6.3

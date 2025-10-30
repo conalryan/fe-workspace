@@ -101,6 +101,7 @@ dist
 /_site/
 /dist/
 /out-tsc/
+out-tsc
 
 storybook-static
 custom-elements.json

@@ -1,14 +1,15 @@
-import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators.js";
-import "./01-accessing-nodes";
-import "./02-children-with-slots";
-import "./03-accessing-slotted-children";
-import "./04-customize-render-root";
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
-@customElement("app-element")
+import './01-accessing-nodes';
+import './02-children-with-slots';
+import './03-accessing-slotted-children';
+import './04-customize-render-root';
+
+@customElement('app-element')
 export class AppElement extends LitElement {
-  static shadowRootOptions = {
-    mode: "open" as ShadowRootMode,
+  static readonly shadowRootOptions = {
+    mode: 'open' as ShadowRootMode,
   };
 
   render() {
@@ -53,6 +54,6 @@ export class AppElement extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "app-element": AppElement;
+    'app-element': AppElement;
   }
 }

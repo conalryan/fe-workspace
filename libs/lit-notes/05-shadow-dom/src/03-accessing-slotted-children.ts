@@ -1,6 +1,6 @@
-import { LitElement } from "lit";
-import { customElement, queryAssignedElements, queryAssignedNodes, state } from "lit/decorators.js";
-import { html } from "lit/html.js";
+import { LitElement } from 'lit';
+import { customElement, queryAssignedElements, queryAssignedNodes, state } from 'lit/decorators.js';
+import { html } from 'lit/html.js';
 
 /**
  * Accessing slotted children
@@ -8,28 +8,57 @@ import { html } from "lit/html.js";
  * - `slot.assignedNodes` -> Node[]
  * - `slot.assignedElements` -> Element[]
  * Use these methods with the getter pattern or with the `slotchange` event.
- * 
- * @queryAssignedElements and @queryAssignedNodes convert a class property into a getter 
- * that returns the result of calling `slot.assignedElements` or `slot.assignedNodes` respectively 
+ *
+ * @queryAssignedElements and @queryAssignedNodes convert a class property into a getter
+ * that returns the result of calling `slot.assignedElements` or `slot.assignedNodes` respectively
  * on a given slot in the component's shadow tree.
- * 
+ *
  * Use these to query the elements or nodes assigned to a given slot.
- * 
+ *
  * Properties
  * - flatten: Boolean specifying whether to flatten the assigned nodes by replacing any child `<slot>` elements with their assigned nodes.
  * - slot: Slot name specifying the slot to query. Leave undefined to select the default slot.
  * - selector (queryAssignedElements only): If specified, only return assigned elements that match this CSS selector.
- * 
+ *
  * Deciding which decorator to use depends on whether you want to query for text nodes assigned to the slot, or only element nodes.
- */ 
-@customElement("accessing-slotted-children")
+ */
+@customElement('accessing-slotted-children')
 export class AccessingSlottedChildren extends LitElement {
+  /**
+   * The query is equivalent to the getter pattern:
+   * ```ts
+   * get _headerNodes() {
+   *   const slot = this.shadowRoot.querySelector('slot[name=header]');
+   *   return slot.assignedNodes({flatten: true});
+   * }
+   * ```
+   */
+  @queryAssignedNodes({ flatten: true, slot: 'header' })
+  _headerNodes!: Node[];
+
+  /**
+   * The query is equivalent to the getter pattern:
+   * ```ts
+   * get _listItems() {
+   *   const slot = this.shadowRoot.querySelector('slot[name=list]');
+   *   return slot.assignedElements().filter((node) => node.matches('.item'));
+   * }
+   * ```
+   */
+  @queryAssignedElements({ selector: '.item', slot: 'list' })
+  _listItems!: HTMLElement[];
+
   @state()
   slots?: Element[];
 
   get _slottedChildren() {
-    const slot = this.shadowRoot?.querySelector("slot");
+    const slot = this.shadowRoot?.querySelector('slot');
     return slot?.assignedElements({ flatten: true });
+  }
+
+  firstUpdated() {
+    this.slots = this._slottedChildren;
+    console.info('Info: firstUpdated', this.localName, this.slots);
   }
 
   /**
@@ -44,41 +73,10 @@ export class AccessingSlottedChildren extends LitElement {
     });
     // ... do something with childNodes ...
     const allText = childNodes
-      .map((node) => {
-        return node.textContent ? node.textContent : "";
-      })
-      .join("");
-    console.log("[AccessingSlottedChildren]::handleSlotchange", allText);
+      .map((node) => node.textContent ? node.textContent : '')
+      .join('');
+    console.info('Info: handleSlotchange', this.localName, allText);
   }
-
-  firstUpdated() {
-    this.slots = this._slottedChildren;
-    console.log("[AccessingSlottedChildren]::firstUpdated", this.slots);
-  }
-
-  /**
-   * The query is equivalent to the getter pattern:
-   * ```ts
-   * get _listItems() {
-   *   const slot = this.shadowRoot.querySelector('slot[name=list]');
-   *   return slot.assignedElements().filter((node) => node.matches('.item'));
-   * }
-   * ```
-   */
-  @queryAssignedElements({ slot: "list", selector: ".item" })
-  _listItems!: Array<HTMLElement>;
-
-  /**
-   * The query is equivalent to the getter pattern:
-   * ```ts
-   * get _headerNodes() {
-   *   const slot = this.shadowRoot.querySelector('slot[name=header]');
-   *   return slot.assignedNodes({flatten: true});
-   * }
-   * ```
-   */
-  @queryAssignedNodes({ slot: "header", flatten: true })
-  _headerNodes!: Array<Node>;
 
   render() {
     return html`

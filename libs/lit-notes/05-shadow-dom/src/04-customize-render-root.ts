@@ -1,6 +1,7 @@
-import { LitElement } from "lit";
-import { html } from "lit";
-import { customElement } from "lit/decorators.js";
+/* eslint-disable max-classes-per-file */
+import { LitElement } from 'lit';
+import { html } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 /**
  * Customizing the render root
@@ -30,15 +31,15 @@ export class CustomizeRenderRootOpen extends LitElement {
    *   - Third-party tooling
    * - Very few use cases actually need "closed" mode (mainly browser internals like <video> controls)
    */
-  static shadowRootOptions = {
-    mode: "open" as ShadowRootMode,
+  static readonly shadowRootOptions = {
+    mode: 'open' as ShadowRootMode,
   };
   render() {
     return html`<slot></slot>`;
   }
 }
 
-@customElement("customize-render-root-closed")
+@customElement('customize-render-root-closed')
 export class CustomizeRenderRootClosed extends LitElement {
   /**
    * ShadowRootMode "closed"
@@ -46,26 +47,27 @@ export class CustomizeRenderRootClosed extends LitElement {
    * - More difficult to inspect (though modern browsers can still show it)
    * - Very few use cases actually need "closed" mode (mainly browser internals like <video> controls)
    */
-  static shadowRootOptions = {
-    mode: "closed" as ShadowRootMode,
+  static readonly shadowRootOptions = {
+    mode: 'closed' as ShadowRootMode,
   };
   render() {
     return html`<slot></slot>`;
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class DelegatesFocus extends LitElement {
   /**
    * Setting `shadowRootOptions`
    * The simplest way to customize the render root is to set the shadowRootOptions static property.
    * The default implementation of `createRenderRoot` passes `shadowRootOptions` as the options argument to attachShadow when creating the component's shadow root.
    * It can be set to customize any options allowed in the ShadowRootInit dictionary, for example mode and delegatesFocus.
-   * 
+   *
    * WARN:
-   * Rendering into children. Rendering into children and not shadow DOM is generally not recommended. 
+   * Rendering into children. Rendering into children and not shadow DOM is generally not recommended.
    * Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its internal DOM.
    */
-  static shadowRootOptions = {
+  static readonly shadowRootOptions = {
     ...LitElement.shadowRootOptions,
     delegatesFocus: true,
   };
@@ -73,18 +75,17 @@ class DelegatesFocus extends LitElement {
 
 @customElement('light-dom')
 export class LightDom extends LitElement {
-  protected render() {
-    return html`
-      <p>Custom rendering without shadow DOM (note, styling leaks in).</p>
-    `;
-  }
   /**
-   * The default implementation of createRenderRoot creates an open shadow root and 
+   * The default implementation of createRenderRoot creates an open shadow root and
    * adds to it any styles set in the static styles class field.
+   * 
    * To customize a component's render root, implement createRenderRoot and return the node you want the template to render into.
    * For example, to render the template into the main DOM tree as your element's children, implement createRenderRoot and return this.
    */
   protected createRenderRoot() {
     return this;
+  }
+  protected render() {
+    return html` <p>Custom rendering without shadow DOM (note, styling leaks in).</p> `;
   }
 }

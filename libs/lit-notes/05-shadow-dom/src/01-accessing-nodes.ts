@@ -1,5 +1,5 @@
-import { LitElement, html } from "lit";
-import { customElement, query, queryAll, queryAsync } from "lit/decorators.js";
+import { LitElement, html } from 'lit';
+import { customElement, query, queryAll, queryAsync } from 'lit/decorators.js';
 
 /**
  * Lit components use shadow DOM to encapsulate their DOM.
@@ -7,10 +7,10 @@ import { customElement, query, queryAll, queryAsync } from "lit/decorators.js";
  * DOM encapsulation is the key to unlocking interoperability with any other code—including other web components or Lit components—functioning on the page.
  *
  * Shadow DOM provides three benefits:
- * - DOM scoping. DOM APIs like document.querySelector won't find elements in the component's shadow DOM,
+ * 1. DOM scoping: DOM APIs like document.querySelector won't find elements in the component's shadow DOM,
  *  so it's harder for global scripts to accidentally break your component.
- * - Style scoping. You can write encapsulated styles for your shadow DOM that don't affect the rest of the DOM tree.
- * - Composition. The component's shadow root, which contains its internal DOM, is separate from the component's children.
+ * 2. Style scoping: You can write encapsulated styles for your shadow DOM that don't affect the rest of the DOM tree.
+ * 3. Composition: The component's shadow root, which contains its internal DOM , is separate from the component's children.
  *  You can choose how children are rendered in your component's internal DOM.
  *
  * Lit renders components to its renderRoot, which is a shadow root by default.
@@ -26,9 +26,8 @@ import { customElement, query, queryAll, queryAsync } from "lit/decorators.js";
  *
  * WARN: Using decorators. Decorators are a proposed JavaScript feature,
  * so you’ll need to use a compiler like Babel or TypeScript to use decorators
- *
  */
-@customElement("accessing-nodes-element")
+@customElement('accessing-nodes-element')
 export class AccessingNodesElement extends LitElement {
   private staticNode?: HTMLElement | null;
 
@@ -36,20 +35,20 @@ export class AccessingNodesElement extends LitElement {
    * You can query internal DOM after component initial render (for example, in firstUpdated), or use a getter pattern:
    */
   firstUpdated() {
-    this.staticNode = this.renderRoot.querySelector("#static-node");
-    console.log("[AccessingNodesElement]::firstUpdated", this.staticNode);
+    this.staticNode = this.renderRoot.querySelector('#static-node');
+    console.log('[AccessingNodesElement]::firstUpdated', this.staticNode);
   }
 
   /**
    * You can query internal DOM after component initial render (for example, in firstUpdated), or use a getter pattern:
    */
   private get _closeButton() {
-    return this.renderRoot.querySelector("#close-button") as HTMLButtonElement;
+    return this.renderRoot.querySelector('#close-button') as HTMLButtonElement;
   }
 
   private _handleCloseButtonClick() {
     const b = this._closeButton;
-    console.log("[AccessingNodesElement]::_handleCloseButtonClick", b);
+    console.log('[AccessingNodesElement]::_handleCloseButtonClick', b);
   }
 
   /**
@@ -60,7 +59,7 @@ export class AccessingNodesElement extends LitElement {
    * }
    * ```
    */
-  @query("#first")
+  @query('#first')
   _first!: HTMLDivElement;
 
   /**
@@ -71,22 +70,26 @@ export class AccessingNodesElement extends LitElement {
    * }
    * ```
    */
-  @queryAll("div")
+  @queryAll('div')
   _divs!: NodeListOf<HTMLDivElement>;
 
   /**
-   * Similar to @query, except that instead of returning a node directly, 
-   * it returns a Promise that resolves to that node after any pending element render is completed. 
+   * Similar to @query, except that instead of returning a node directly,
+   * it returns a Promise that resolves to that node after any pending element render is completed.
    * Code can use this instead of waiting for the updateComplete promise.
    * This is useful, for example, if the node returned by @queryAsync can change as a result of another property change.
    */
-  @queryAsync("#first")
+  @queryAsync('#first')
   _firstAsync!: Promise<HTMLDivElement>;
 
   render() {
     return html`
       <div id="static-node">This is a static node</div>
-      <button id="close-button" @click=${this._handleCloseButtonClick}>Close</button>
+      <button
+        id="close-button"
+        @click=${this._handleCloseButtonClick}>
+        Close
+      </button>
       <div id="first">
         <p>This example demonstrates two ways to access nodes:</p>
         <ul>
