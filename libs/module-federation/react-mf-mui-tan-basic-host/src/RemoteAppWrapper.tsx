@@ -1,8 +1,8 @@
 import { lazy, Suspense } from 'react';
 
 const FeatureApp = lazy(
-  // @ts-expect-error Module federation remote import not recognized by TypeScript
   async () => {
+    // @ts-expect-error Module federation remote import not recognized by TypeScript
     const module = await import('basicRemote/FeatureApp');
     return { default: module.FeatureApp };
   },
