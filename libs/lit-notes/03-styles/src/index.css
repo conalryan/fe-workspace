@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --theming-element-text-color: green;
-  --theming-element-background-color: lightblue;
+  --theming-element-background-color: light-dark(lightblue, lightgreen);
   --theming-element-font-family: Roboto;
 
   --button-text-color: black;
