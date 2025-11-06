@@ -14,6 +14,7 @@
     "dev": "lerna run dev --parallel",
     "dev:lit": "lerna run dev --parallel --scope=\"lit-*\"",
     "dev:module-federation": "lerna run dev --parallel --scope=react-mf-mui-tan-basic-host --scope=react-mf-mui-tan-basic-remote --scope=react-mui-tan-host --scope=react-mui-tan-remote",
+    "dev:rsbuild-mf": "lerna run dev --parallel --scope=\"rsbuild-mf-*\"",
     "dev:react": "lerna run dev --parallel --scope=\"react-*\"",
     "lint": "lerna run lint --parallel",
     "lint:fix": "lerna run lint:fix --parallel",
