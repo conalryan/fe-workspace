@@ -1,10 +1,10 @@
 {
-  "name": "react-mui-tan-remote",
+  "name": "react-mf-mui-tan-host",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 4201",
+    "dev": "vite --port 4200",
     "build": "tsc -b && vite build",
     "lint": "eslint . && prettier --check .",
     "lint:fix": "eslint --fix .",
@@ -12,7 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@conalryan/react-mui-core-mf": "workspace:*",
+    "@conalryan/react-mf-mui-core": "workspace:*",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@linode/design-language-system": "^5.0.0",

@@ -1,4 +1,4 @@
-import { light } from '@conalryan/react-mui-core-mf/foundations';
+import { light } from '@conalryan/react-mf-mui-core/foundations';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { StrictMode } from 'react';

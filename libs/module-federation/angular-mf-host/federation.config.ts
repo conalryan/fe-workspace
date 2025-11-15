@@ -4,7 +4,7 @@ export default withFederation({
   options: {
 
     remotes: {
-      "mfe1": "http://localhost:3000/remoteEntry.js",    
+      "mfe1": "http://localhost:4201/remoteEntry.js",
     },
 
     shared: {
@@ -13,7 +13,7 @@ export default withFederation({
 
   },
   skip: [
-    // Add the names of packages, entrypoints 
+    // Add the names of packages, entrypoints
     // and libs you don't want to share here
     // Strings are compared with ===
 

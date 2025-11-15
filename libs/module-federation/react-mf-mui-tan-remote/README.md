@@ -1,4 +1,4 @@
-# react-mui-tan-remote
+# react-mf-mui-tan-remote
 
 ## [MUI Installation](https://mui.com/material-ui/getting-started/installation/)
 
@@ -18,9 +18,9 @@ Combined install
 
 ## [Tanstack Router Installation](https://tanstack.com/router/latest/docs/framework/react/quick-start)
 
-`pnpm -F react-mui-tan-remote add @tanstack/react-router`
+`pnpm -F react-mf-mui-tan-remote add @tanstack/react-router`
 
-`pnpm -F react-mui-tan-remote add @tanstack/react-router-devtools`
+`pnpm -F react-mf-mui-tan-remote add @tanstack/react-router-devtools`
 
 ## Tanstack Router Integration
 
@@ -58,7 +58,7 @@ routes/routeTree.tsx
 ```typescript
 import { indexRoute } from './indexRoute';
 import { rootRoute } from './rootRoute';
-import { reactMuiTanRemoteRoute } from './react-mui-tan-remote';
+import { reactMuiTanRemoteRoute } from './react-mf-mui-tan-remote';
 
 export const routeTree = rootRoute.addChildren([indexRoute, reactMuiTanRemoteRoute]);
 ```
@@ -79,13 +79,13 @@ import { createRoute, Navigate } from '@tanstack/react-router';
 import { rootRoute } from './rootRoute';
 
 export const indexRoute = createRoute({
-  component: () => <Navigate to="/react-mui-tan-remote" />,
+  component: () => <Navigate to="/react-mf-mui-tan-remote" />,
   getParentRoute: () => rootRoute,
   path: '/',
 });
 ```
 
-routes/react-mui-tan-remote
+routes/react-mf-mui-tan-remote
 ```typescript
 import { createRoute } from '@tanstack/react-router';
 import { lazy } from 'react';
@@ -99,7 +99,7 @@ const reactMuiTanRemote = lazy(
 export const reactMuiTanRemoteRoute = createRoute({
   component: reactMuiTanRemote,
   getParentRoute: () => rootRoute,
-  path: 'react-mui-tan-remote',
+  path: 'react-mf-mui-tan-remote',
 });
 
 export default reactMuiTanRemoteRoute;

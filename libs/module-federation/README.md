@@ -1,12 +1,12 @@
 # Module Federation
 
-## [React MUI Tan Host](./react-mui-tan-host/README.md)
+## [React MUI Tan Host](./react-mf-mui-tan-host/README.md)
 
-## [React MUI Tan Remote](./react-mui-tan-remote/README.md)
+## [React MUI Tan Remote](./react-mf-mui-tan-remote/README.md)
 
 ### Errors with current router setup
 
-**Navigate to** http://localhost:4100/react-mui-tan-remote
+**Navigate to** http://localhost:4100/react-mf-mui-tan-remote
 
 Error
 ```bash
@@ -23,7 +23,7 @@ App.tsx:56 Error: Invariant failed: Could not find parent match for matchId "und
     at useStore (@tanstack_react-rout…?v=dbd6ad26:5388:75)
 ```
 
-**Navigate to** http://localhost:4100/react-mui-tan-remote/hello
+**Navigate to** http://localhost:4100/react-mf-mui-tan-remote/hello
 
 AppBar loads but the remote does not; shows "Not Found"
 

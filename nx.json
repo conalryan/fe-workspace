@@ -17,11 +17,11 @@
     "react-basic-app": {
       "root": "libs/react-basic-app"
     },
-    "react-mui-tan-host": {
-      "root": "libs/module-federation/react-mui-tan-host"
+    "react-mf-mui-tan-host": {
+      "root": "libs/module-federation/react-mf-mui-tan-host"
     },
-    "react-mui-tan-remote": {
-      "root": "libs/module-federation/react-mui-tan-remote"
+    "react-mf-mui-tan-remote": {
+      "root": "libs/module-federation/react-mf-mui-tan-remote"
     },
     "react-mui-app": {
       "root": "libs/react-mui-app"

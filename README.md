@@ -49,7 +49,7 @@ lerna run dev --parallel --stream
 lerna run build --scope="react-*"
 
 # Run on a specific package
-lerna run dev --scope=react-mui-tan-host
+lerna run dev --scope=react-mf-mui-tan-host
 
 # Exclude certain packages
 lerna run build --ignore=react-basic-app
@@ -58,7 +58,7 @@ lerna run build --ignore=react-basic-app
 3. For your module federation setup specifically
 ```bash
 # Run both module federation apps
-lerna run dev --parallel --scope=react-mui-tan-host --scope=react-mui-tan-remote
+lerna run dev --parallel --scope=react-mf-mui-tan-host --scope=react-mf-mui-tan-remote
 
 # Or using pattern matching
 lerna run dev --parallel --scope="react-mui-tan-*"
